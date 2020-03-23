@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :username, presence: :true, uniqueness: :true
   validates :preferred_language, presence: :true
   has_many :bookshelves, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
