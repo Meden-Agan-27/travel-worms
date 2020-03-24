@@ -3,6 +3,10 @@ class BookshelvesController < ApplicationController
     @bookshelves = current_user.bookshelves
   end
   # we don't need a show, when you click on a bookshelf, redirecting to bookshelf_items??
+  def show
+    @bookshelf = Bookshelf.find(params[:id])
+  end
+
   def new
     @bookshelf = Bookshelf.new
   end
