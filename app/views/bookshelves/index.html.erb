@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h1>
+      <% @bookshelves.each do |bookshelf| %>
+      <ul>
+      <li class="list-group-item"><%= bookshelf.name %>
+      <p class="text-right"><%= link_to 'delete', "bookshelves/#{bookshelf.id}", method: :delete %></p>
+      <small><%= bookshelf.description %></small>
+      </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
