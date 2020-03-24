@@ -2,4 +2,17 @@
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
 
+<%= simple_form_for [@book, @review] do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :review_content %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+
+<div>
+  <% @book.reviews.each do |review| %>
+    <p><%= "⭐️" * review.rating %></p>
+    <p><%= review.review_content %></p>
+  <% end %>
+</div>
+
 <%= link_to "Back to all books", books_path %>
