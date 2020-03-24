@@ -5,7 +5,7 @@
       <% @bookshelves.each do |bookshelf| %>
       <ul>
       <li class="list-group-item"><%= bookshelf.name %>
-      <p class="text-right"><%= link_to 'delete', "bookshelves/#{bookshelf.id}", method: :delete %></p>
+      <p class="text-right"><small><%= link_to 'edit', "bookshelves/#{bookshelf.id}"%> | <%= link_to 'delete', "bookshelves/#{bookshelf.id}", method: :delete %></small></p>
       <small><%= bookshelf.description %></small>
       </li>
       </ul>
