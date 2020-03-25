@@ -14,7 +14,7 @@ def scrape_books(country)
       title = book.search('a').attribute('title').value
       author = book.search('.authorName').text
       image = book.search('img').attribute('src').value
-      Book.create(title: title, language: country)
+      Book.create(title: title, language: "english", country: country, author: author)
     end
    rescue URI::InvalidURIError
     puts "Invalid country"
