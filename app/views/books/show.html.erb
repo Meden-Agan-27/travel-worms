@@ -3,7 +3,8 @@
 
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
-
+<br>
+<h3>Leave a review</h3>
 <%= simple_form_for [@book, @review] do |f| %>
 <!--   <%= f.input :rating %> -->
   <p>Rating *</p>
@@ -13,7 +14,8 @@
   <%= f.input :review_content %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
-
+<br>
+<h3>Reviews</h3>
 <div>
   <% @book.reviews.each do |review| %>
     <p><%= "⭐️" * review.rating %></p>
