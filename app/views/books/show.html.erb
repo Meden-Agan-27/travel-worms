@@ -1,5 +1,22 @@
 <h1><%= @book.title %></h1>
+
+
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
 
 <%= link_to "Back to all books", books_path %>
+<br>
+
+
+<p>Add this book to a bookshelf:</p>
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    MyBookshelves
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <% @bookshelves.each do |bookshelf| %>
+    <a class="dropdown-item" href="#"><%= bookshelf.name %></a>
+    <% end %>
+  </div>
+</div>
+

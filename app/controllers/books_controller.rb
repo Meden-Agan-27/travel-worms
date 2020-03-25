@@ -10,6 +10,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @bookshelves = current_user.bookshelves
     @book = Book.find(params[:id])
   end
 
