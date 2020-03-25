@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h1 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h1>
+      <p class="text-right"><small><%= link_to 'Add a bookshelf', "bookshelves/new" %></small></p>
+      <% if @bookshelves.empty? %>
+
+      <h5 class="text-center">You have not created any bookshelves yet.</h5>
+
+      <% else %>
+      <% @bookshelves.each do |bookshelf| %>
+        <ul class="container">
+        <li class="list-group-item"><%=link_to bookshelf.name, bookshelf %>
+        <p class="text-right"><small><%= link_to 'delete', "bookshelves/#{bookshelf.id}", method: :delete %></small></p>
+        <small><%= bookshelf.description %></small>
+        </li>
+        </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
