@@ -11,6 +11,7 @@ User.new(username: "ghita", password: "password", email: "ghita@book.com", prefe
 User.new(username: "sano", password: "password", email: "sano@book.com", preferred_language: "english").save
 User.new(username: "rafiki", password: "password", email: "rafiki@book.com", preferred_language: "french").save
 puts "Creating Books"
+
 Book.new(title: "Harold et Maude", genre: "novel", language: "french").save
 Book.new(title: "Ulysses", genre: "novel", language: "english").save
 Book.new(title: "War and Peace", genre: "novel", language: "english").save
