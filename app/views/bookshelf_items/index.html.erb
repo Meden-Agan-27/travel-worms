@@ -1,0 +1,7 @@
+
+<% @bookshelf_items.each do |item| %>
+
+<% if Bookshelf.find(item.bookshelf_id).user.username == current_user.username %>
+<%= Bookshelf.find(item.bookshelf_id).name %> - <%= Book.find(item.book_id ).title %> - status: <%= item.status %><br>
+<% end %>
+<% end %>
