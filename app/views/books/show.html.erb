@@ -1,4 +1,11 @@
 <h1><%= @book.title %></h1>
+
+  <link rel="stylesheet" href="styles/5star.css">
+
+
+<p>Genre: <%= @book.genre.capitalize %></p>
+<p>Language: <%= @book.language.capitalize %></p>
+<br>
 <!-- start - this is a dropdown list for MyBookshelves -->
 <p>Add this book to my bookshelf:</p>
 <div class="dropdown show">
@@ -12,12 +19,6 @@
   </div>
 </div>
 <!-- end -->
-
-  <link rel="stylesheet" href="styles/5star.css">
-
-
-<p>Genre: <%= @book.genre.capitalize %></p>
-<p>Language: <%= @book.language.capitalize %></p>
 <br>
 <h3>Leave a review</h3>
 <%= simple_form_for [@book, @review] do |f| %>
