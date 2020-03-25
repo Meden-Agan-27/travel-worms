@@ -11,6 +11,7 @@ class BooksController < ApplicationController
 
   def show
     @bookshelves = current_user.bookshelves
+    # @bookshelves is needed for generating dropdown list with MyBookshelves
     @book = Book.find(params[:id])
     @review = Review.new
   end

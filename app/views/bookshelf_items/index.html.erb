@@ -9,6 +9,7 @@
         <li><%= link_to mybook.title, book_path(mybook.id) %> | <%= item.status %> | <%= link_to 'delete', bookshelf_bookshelf_item_path(item.id), method: :delete %></li>
         </ul>
         <% end %>
+        <%= link_to 'Back', bookshelf_path %>
     </div>
   </div>
 </div>
