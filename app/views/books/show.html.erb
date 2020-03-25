@@ -1,9 +1,15 @@
 <h1><%= @book.title %></h1>
+  <link rel="stylesheet" href="styles/5star.css">
+
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
 
 <%= simple_form_for [@book, @review] do |f| %>
-  <%= f.input :rating %>
+<!--   <%= f.input :rating %> -->
+  <p>Rating *</p>
+  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+  <%= b.radio_button + b.label {''} %>
+  <% end %>
   <%= f.input :review_content %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
