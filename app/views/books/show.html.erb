@@ -1,5 +1,28 @@
 <h1><%= @book.title %></h1>
+  <link rel="stylesheet" href="styles/5star.css">
+
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
+<br>
+<h3>Leave a review</h3>
+<%= simple_form_for [@book, @review] do |f| %>
+<!--   <%= f.input :rating %> -->
+  <p>Rating *</p>
+  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+  <%= b.radio_button + b.label {''} %>
+  <% end %>
+  <%= f.input :review_content %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+<br>
+<h3>Reviews</h3>
+<div>
+  <% @book.reviews.each do |review| %>
+    <p><%= review.user.username %></p>
+    <p><%= review.created_at %></p>
+    <p><%= "⭐️" * review.rating %></p>
+    <p><%= review.review_content %></p>
+  <% end %>
+</div>
 
 <%= link_to "Back to all books", books_path %>
