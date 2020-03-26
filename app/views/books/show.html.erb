@@ -5,6 +5,7 @@
 <p>Language: <%= @book.language.capitalize %></p>
 <br>
 <h3>Leave a review</h3>
+<%= if
 <%= simple_form_for [@book, @review] do |f| %>
 <!--   <%= f.input :rating %> -->
 <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
