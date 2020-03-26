@@ -54,13 +54,12 @@ Bookshelf.new(name: "my_books", user: User.second).save
 Bookshelf.new(name: "later", user: User.second).save
 
 puts "Creating Bookshelf_items"
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.last).save
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.first).save
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.second).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.last).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.first).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.second).save
-
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.last).save!
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.first).save!
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.second).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.last).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.first).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.second).save!
 puts "Creating reviews"
 Review.new(user: User.first, book: Book.first, review_content: "I didn't like this book coz I can't read.", rating: 1).save
 Review.new(user: User.second, book: Book.second, review_content: "I loved this book coz I can't read.", rating: 5).save

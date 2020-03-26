@@ -5,6 +5,7 @@ class BookshelvesController < ApplicationController
   # we don't need a show, when you click on a bookshelf, redirecting to bookshelf_items??
   def show
     @bookshelf = Bookshelf.find(params[:id])
+    @bookshelf_items = BookshelfItem.where(bookshelf_id: @bookshelf.id)
   end
 
   def new
@@ -19,6 +20,16 @@ class BookshelvesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @bookshelf = Bookshelf.find(params[:id])
+  end
+
+  def update
+    @bookshelf = Bookshelf.find(params[:id])
+    @bookshelf.update(bookshelf_params)
+    redirect_to bookshelves_path, notice: 'update done'
   end
 
   def destroy
