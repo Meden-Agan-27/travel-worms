@@ -2,9 +2,33 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      <h1><%= @bookshelf.name %></h1><br>
-      <p><%= @bookshelf.description %></p><br>
-      <p>a list wit books ?? later on....</p>
+      <%= link_to "edit", edit_bookshelf_path(@bookshelf) %>
+      <h1 class="text-center"><%= current_user.username.capitalize %>'s books on <em>'<%= @bookshelf.name %>'</em> shelf</h1>
+
+      <p class="text-center"><%= @bookshelf.description %></p><br>
+      <% @bookshelf_items.each do |item| %>
+        <% mybook = Book.find(item.book_id) %>
+        <ul class="container">
+        <li class="list-group-item"><%= link_to mybook.title, book_path(mybook.id) %>
+        <!-- <small>status: <%= item.status %></small> -->
+        <!-- start form for status -->
+          <div class="dropdown show">
+            <small>status</small>
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= item.status %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+              <a class="dropdown-item" href="#">reading</a>
+              <a class="dropdown-item" href="#">completed</a>
+            </div>
+          </div>
+          <!-- end form-->
+        <p class="text-right"><small><%= link_to 'delete', bookshelf_bookshelf_item_path(item.id), method: :delete %></small></p>
+        </li>
+        </ul>
+        <% end %>
+      <%= link_to 'Back', bookshelves_path %>
     </div>
   </div>
 </div>
