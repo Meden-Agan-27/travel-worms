@@ -10,6 +10,7 @@ def scrape_books(country)
       title = book.search('a').attribute('title').value
       author = book.search('.authorName').text
       image = book.search('img').attribute('src').value
+      # Please add the image in the following line when the migration for adding image to book model would have been done.
       Book.create(title: title, language: "english", country: country, author: author)
     end
    rescue URI::InvalidURIError
