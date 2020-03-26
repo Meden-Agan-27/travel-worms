@@ -5,7 +5,6 @@
 <p>Language: <%= @book.language.capitalize %></p>
 <br>
 <h3>Leave a review</h3>
-<%= if
 <%= simple_form_for [@book, @review] do |f| %>
 <!--   <%= f.input :rating %> -->
 <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
@@ -20,11 +19,15 @@
 <% end %>
 <br>
 <h3>Reviews</h3>
+<font size="4"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
+ --><font size="4"><%= "☆" * (5 - @book.average_rating) %></font>
+<p><%= @book.average_rating %> out of 5</p>
 <div>
   <% @book.reviews.each do |review| %>
     <span><strong><%= review.user.username %></strong></span>
     <span><%= review.created_at %></span>
-    <p><%= "⭐️" * review.rating %></p>
+    <p><font size="4"><%= "★" * review.rating %></font><!--Comment line necessary to remove whitespace
+    --><font size="4"><%= "☆" * (5 - review.rating) %></font></p>
     <p><%= review.review_content %></p>
   <% end %>
 </div>
