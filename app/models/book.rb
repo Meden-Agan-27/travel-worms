@@ -3,4 +3,12 @@ class Book < ApplicationRecord
   has_many :bookshelf_items, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :bookshelves, through: :bookshelf_items
+
+  def average_rating
+    sum = 0
+    @reviews = self.reviews.each do |review|
+      sum += review.rating
+    end
+    sum / self.reviews.count
+  end
 end
