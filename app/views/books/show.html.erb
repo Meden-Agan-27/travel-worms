@@ -19,6 +19,7 @@
     <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
     <% end %>
     <% @bookshelves.each do |bookshelf| %>
+
     <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
     <% end %>
   </div>

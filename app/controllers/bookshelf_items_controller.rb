@@ -15,8 +15,12 @@ class BookshelfItemsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @bookshelf = Bookshelf.find(params[:bookshelf_id])
+    items = @bookshelf.bookshelf_items
+    items.each do |item|
     @bookshelf_item = BookshelfItem.new(book: @book, bookshelf: @bookshelf)
-    @bookshelf_item.book_id = @book.id
+    end
+    # raise
+    # @bookshelf_item.book_id = @book.id
     if @bookshelf_item.save
       redirect_to bookshelves_path, notice: 'successfully created.'
     else
