@@ -25,6 +25,7 @@ def scrape_countries
   html_doc.search('tr').first(5).each do |element|
     country = element.search('td:nth-child(2)').text.strip.downcase
       scrape_books(country)
+      sleep(5)
   end
 end
 
