@@ -5,7 +5,7 @@ class BookshelfItemsController < ApplicationController
   end
 
   def show
-    @bookshelf_item = BookshelfItem.find(params[:id])
+    # @bookshelf_item = BookshelfItem.find(params[:id])
   end
 
   def new
