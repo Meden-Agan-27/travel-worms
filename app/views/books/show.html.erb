@@ -9,9 +9,7 @@
 <!--   <%= f.input :rating %> -->
 <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
   <p>Rating *</p>
-  <pre>1       5</pre>
-  <br>
-
+  <label>1</label>
   <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
   <%= b.radio_button + b.label {''} %>
   <% end %>
@@ -23,7 +21,7 @@
 <h3>Reviews</h3>
 <div>
   <% @book.reviews.each do |review| %>
-    <p><%= review.user.username %></p>
+    <span><strong><%= review.user.username %></strong></span>
     <span><%= review.created_at %></span>
     <p><%= "⭐️" * review.rating %></p>
     <p><%= review.review_content %></p>
