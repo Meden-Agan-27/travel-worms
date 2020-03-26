@@ -1,0 +1,7 @@
+<% @books.each do |book| %>
+<div class="card-body">
+  <h4 class="card-title" style="color: black; font-size: 21px;"><%= book.title %> the <%= book.genre %></h4>
+<div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= book.image.attached? ? cl_image_path(book.image.key) : asset_path('dog') %>');"></div>
+<div class="card-text"<%= book.title %> <%= book.author  %></div>
+</div>
+<% end %>

@@ -1,4 +1,5 @@
 <h1>All books</h1>
+<% if false %>
 <ul>
 <% @books.each do |book| %>
     <li>
@@ -7,4 +8,15 @@
     <% end %>
 </ul>
 
-<%= link_to "Back to index", root_path  %>
+<% render 'card' %>
+<% end %>
+<div class="cards">
+<% @books.each do |book| %>
+<div class="card-body">
+  <h5 class="card-title"><%= book.title %></h5>
+<div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('placeholder_book') %>');"></div>
+<div class="card-text"<%= book.title %> <%= book.author  %>></div>
+</div>
+<% end %>
+</div>
+<%= link_to "Back to index", root_path, class: "btn btn-dark mt-3"  %>
