@@ -15,7 +15,7 @@
 <div class="card-body">
   <h5 class="card-title"><%= book.title %></h5>
 <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= asset_path('placeholder_book') %>');"></div>
-<div class="card-text btn btn-warning" style="border-radius: 5px;" ><%= link_to "Check dates", book %></div>
+<div class="card-text"<%= book.title %> <%= book.author  %>></div>
 </div>
 <% end %>
 </div>

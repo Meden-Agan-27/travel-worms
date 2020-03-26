@@ -40,7 +40,7 @@
 }
 
 .card-body {
-  width: 250px;
+  width: 210px;
   height: 300px;
   background-color: #e4e0cd;
   justify-content: center;
@@ -60,7 +60,8 @@
 
 .card-text {
   position: absolute;
-  bottom: 20px;
+  bottom: 5px;
+  z-index: 2;
 }
 
 .card-text a {
@@ -71,8 +72,8 @@ color: white;
 .card-image {
   background-size: cover;
   background-position: center;
-  height: 150px;
-  width: 150px;
+  height: 220px;
+  width: 200px;
   justify-content: center;
   align-items: center;
   color: white;
@@ -82,7 +83,8 @@ color: white;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: absolute;
-  top: 55px;
+  top: 5px;
+  z-index: 0;
 }
 
 .pet-card {
