@@ -10,7 +10,20 @@
         <% mybook = Book.find(item.book_id) %>
         <ul class="container">
         <li class="list-group-item"><%= link_to mybook.title, book_path(mybook.id) %>
-        <small>status: <%= item.status %></small>
+        <!-- <small>status: <%= item.status %></small> -->
+        <!-- start form for status -->
+          <div class="dropdown show">
+            <small>status</small>
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= item.status %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+              <a class="dropdown-item" href="#">reading</a>
+              <a class="dropdown-item" href="#">completed</a>
+            </div>
+          </div>
+          <!-- end form-->
         <p class="text-right"><small><%= link_to 'delete', bookshelf_bookshelf_item_path(item.id), method: :delete %></small></p>
         </li>
         </ul>

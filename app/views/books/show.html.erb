@@ -6,19 +6,23 @@
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
 <br>
+
 <!-- start - this is a dropdown list for MyBookshelves -->
-<p>Add this book to my bookshelf:</p>
 <div class="dropdown show">
   <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    MyBookshelves
+    Add this book on a bookshelf
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <% if @bookshelves.empty? %>
+    <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
+    <% end %>
     <% @bookshelves.each do |bookshelf| %>
-    <a class="dropdown-item" href="#"><%= bookshelf.name %></a>
+    <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
     <% end %>
   </div>
 </div>
 <!-- end -->
+
 <br>
 <h3>Leave a review</h3>
 <%= simple_form_for [@book, @review] do |f| %>
