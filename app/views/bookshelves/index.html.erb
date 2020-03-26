@@ -10,7 +10,7 @@
       <% else %>
       <% @bookshelves.each do |bookshelf| %>
         <ul class="container">
-        <li class="list-group-item"><%=link_to bookshelf.name, bookshelf %>
+        <li class="list-group-item"><strong><%=link_to bookshelf.name.capitalize, bookshelf %></strong>
         <p class="text-right"><small><%= link_to 'delete', "bookshelves/#{bookshelf.id}", method: :delete %></small></p>
         <small><%= bookshelf.description %></small>
         </li>

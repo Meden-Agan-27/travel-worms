@@ -1,7 +1,16 @@
 
-<% @bookshelf_items.each do |item| %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h1 class="text-center"><%= current_user.username.capitalize %>'s books on <em><%= @bookshelf.name %></em> shelf</h1>
+        <% @bookshelf_items.each do |item| %>
+        <% mybook = Book.find(item.book_id) %>
+        <ul>
+        <li><%= link_to mybook.title, book_path(mybook.id) %> | <%= item.status %> | <%= link_to 'delete', bookshelf_bookshelf_item_path(item.id), method: :delete %></li>
+        </ul>
+        <% end %>
+        <%= link_to 'Back', bookshelf_path %>
+    </div>
+  </div>
+</div>
 
-<% if Bookshelf.find(item.bookshelf_id).user.username == current_user.username %>
-<%= Bookshelf.find(item.bookshelf_id).name %> - <%= Book.find(item.book_id ).title %> - status: <%= item.status %><br>
-<% end %>
-<% end %>

@@ -11,13 +11,13 @@ User.new(username: "ghita", password: "password", email: "ghita@book.com", prefe
 User.new(username: "sano", password: "password", email: "sano@book.com", preferred_language: "english").save
 User.new(username: "rafiki", password: "password", email: "rafiki@book.com", preferred_language: "french").save
 puts "Creating Books"
-Book.new(title: "Harold et Maude", genre: "novel", language: "french", author: "name").save
-Book.new(title: "Ulysses", genre: "novel", language: "english", author: "name").save
-Book.new(title: "War and Peace", genre: "novel", language: "english", author: "name").save
-Book.new(title: "Narnia", genre: "fantasy", language: "english", author: "name").save
-Book.new(title: "Hobbit", genre: "novel", language: "english", author: "name").save
-Book.new(title: "Poems by Me", genre: "poem", language: "english", author: "name").save
-Book.new(title: "Hubs and cities in Middle Ages (Europe)", genre: "history", language: "english", author: "name").save
+Book.new(title: "Harold et Maude", genre: "novel", language: "french", author: "John Doe").save
+Book.new(title: "Ulysses", genre: "novel", language: "english", author: "John Doe").save
+Book.new(title: "War and Peace", genre: "novel", language: "english", author: "John Doe").save
+Book.new(title: "Narnia", genre: "fantasy", language: "english", author: "John Doe").save
+Book.new(title: "Hobbit", genre: "novel", language: "english", author: "John Doe").save
+Book.new(title: "Poems by Me", genre: "poem", language: "english", author: "John Doe").save
+Book.new(title: "Hubs and cities in Middle Ages (Europe)", genre: "history", language: "english", author: "John Doe").save
 puts "Creating Bookshelves"
 Bookshelf.new(name: "my_books", user: User.first).save
 Bookshelf.new(name: "my_books", user: User.last).save
@@ -26,12 +26,12 @@ Bookshelf.new(name: "later", user: User.last).save
 Bookshelf.new(name: "my_books", user: User.second).save
 Bookshelf.new(name: "later", user: User.second).save
 puts "Creating Bookshelf_items"
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.last).save
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.first).save
-BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.second).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.last).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.first).save
-BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.second).save
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.last).save!
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.first).save!
+BookshelfItem.new(bookshelf: Bookshelf.first, book: Book.second).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.last).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.first).save!
+BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.second).save!
 puts "Creating reviews"
 Review.new(user: User.first, book: Book.first, review_content: "I didn't like this book coz I can't read.", rating: 1).save
 Review.new(user: User.second, book: Book.second, review_content: "I loved this book coz I can't read.", rating: 5).save
