@@ -16,7 +16,7 @@ class BookshelfItemsController < ApplicationController
     @bookshelf_item = BookshelfItem.find(params[:bookshelf_id])
     @bookshelf_item.destroy
     # raise
-    redirect_to bookshelf_items_path
+    redirect_to bookshelf_path
   end
 
 end
