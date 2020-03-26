@@ -6,10 +6,14 @@ def scrape_books(country)
     url = "https://www.goodreads.com/shelf/show/#{query}"
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    html_doc.search('.elementList').first(30).each do |book|
+    html_doc.search('.elementList').first(1).each do |book|
       title = book.search('a').attribute('title').value
       author = book.search('.authorName').text
       image = book.search('img').attribute('src').value
+      query_for_title = book.search('a').attribute('bookTitle').href
+      puts query_for_title
+
+
       Book.create(title: title, language: "english", country: country, author: author, image: image, genre: "novel")
     end
    rescue URI::InvalidURIError
