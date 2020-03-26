@@ -3,6 +3,8 @@
 
 <p>Genre: <%= @book.genre.capitalize %></p>
 <p>Language: <%= @book.language.capitalize %></p>
+<p>Country: <%= @book.country.capitalize %></p>
+<%= image_tag @book.image %>
 <br>
 <h3>Leave a review</h3>
 <%= simple_form_for [@book, @review] do |f| %>
