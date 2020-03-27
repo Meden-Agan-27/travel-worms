@@ -28,6 +28,7 @@
         <!-- end -->
 
            <% if @book.reviews.any? %>
+           <p>Average user rating:</p>
           <font size="3" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
            --><font size="3" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
           <% end %>
@@ -38,25 +39,29 @@
         </div>
       </div>
         <br>
-        <h3>Leave a review</h3>
+
+        <div class="container review">
+        <h3 class= "text-center">Leave a review</h3>
         <%= simple_form_for [@book, @review] do |f| %>
         <!--   <%= f.input :rating %> -->
         <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
-          <p>Rating *</p>
+
+<div class= "text-center">
           <label>👎</label>
           <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
           <%= b.radio_button + b.label {''} %>
           <% end %>
           <label>👍</label>
           <%= f.input :review_content %>
-          <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+          <%= f.submit "Submit", class: "btn btn-primary w-100" %>
         <% end %>
+      </div>
         <br>
-        <h3>Reviews</h3>
+
+      <div class="container review">
+        <h3 class= "text-center">Reviews</h3>
         <% if @book.reviews.any? %>
-        <font size="4" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
-         --><font size="4" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
-        <p><%= @book.average_rating %> out of 5</p>
         <div>
           <% @book.reviews.each do |review| %>
             <span><strong><%= review.user.username %></strong></span>
@@ -67,8 +72,10 @@
           <% end %>
         </div>
         <% end %>
+        </div>
+        </div>
 
-        <%= link_to "Back to all books", books_path %>
+        <%= link_to "Back to all books", books_path, class: "btn btn-primary mt-3" %>
     </div>
   </div>
 </div>
