@@ -16,7 +16,7 @@ html {
   background-color: $navy;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 60px;
   padding: 0px 50px;
   color: white;
@@ -24,7 +24,6 @@ html {
 }
 .footer-links {
   display: flex;
-  align-items: center;
 }
 .footer-links a {
   color: white;
