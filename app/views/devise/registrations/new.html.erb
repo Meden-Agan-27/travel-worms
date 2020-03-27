@@ -7,6 +7,9 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
+          <%= f.input :username,
+                      required: true,
+                      input_html: { autocomplete: "username" } %>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
@@ -18,6 +21,10 @@
           <%= f.input :password_confirmation,
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
+          <%= f.input :preferred_language,
+                      collection: ["english", "french"],
+                      required: true,
+                      input_html: { autocomplete: "english" } %>
         </div>
 
         <div class="form-actions">
