@@ -62,6 +62,10 @@
 
 .card-text {
 margin-top: 5px;
+  a {
+  text-decoration: none;
+  color: inherit;
+}
 }
 
 .card-image {
@@ -80,7 +84,3 @@ margin-top: 5px;
 
 }
 
-.card-text a {
-  text-decoration: none;
-  color: inherit;
-}
