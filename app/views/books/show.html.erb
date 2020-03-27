@@ -31,11 +31,11 @@
 <!--   <%= f.input :rating %> -->
 <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
   <p>Rating *</p>
-  <label>1</label>
-  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+  <label>👎</label><!--Comment line necessary to remove whitespace
+ --><%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
   <%= b.radio_button + b.label {''} %>
   <% end %>
-  <label>5</label>
+  <label>👍</label>
   <%= f.input :review_content %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
