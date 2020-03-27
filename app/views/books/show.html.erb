@@ -15,11 +15,13 @@
     Add this book on a bookshelf
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <% if current_user.bookshelves.empty? %>
-    <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
-    <% end %>
-    <% current_user.bookshelves.each do |bookshelf| %>
-    <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
+    <% if signed_in?  %>
+        <% if current_user.bookshelves.empty? %>
+            <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
+        <% end %>
+        <% current_user.bookshelves.each do |bookshelf| %>
+          <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
+        <% end %>
     <% end %>
   </div>
 </div>
