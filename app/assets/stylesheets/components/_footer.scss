@@ -13,13 +13,13 @@ html {
   bottom: 0px;
   right: 0px;
   width: 100%;
-  background-color: #7fa998;
+  background-color: $navy;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 60px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: white;
   margin-top: -200%;
 }
 .footer-links {
@@ -27,7 +27,7 @@ html {
   align-items: center;
 }
 .footer-links a {
-  color: black;
+  color: white;
   opacity: 0.15;
   text-decoration: none;
   font-size: 24px;

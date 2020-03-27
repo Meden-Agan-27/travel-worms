@@ -26,6 +26,7 @@
           </div>
         </div>
         <!-- end -->
+
            <% if @book.reviews.any? %>
           <font size="3" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
            --><font size="3" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
@@ -36,19 +37,17 @@
           <p>Country: <%= @book.country.capitalize %></p>
         </div>
       </div>
-
-
         <br>
         <h3>Leave a review</h3>
         <%= simple_form_for [@book, @review] do |f| %>
         <!--   <%= f.input :rating %> -->
         <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
           <p>Rating *</p>
-          <label>1</label>
+          <label>👎</label>
           <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
           <%= b.radio_button + b.label {''} %>
           <% end %>
-          <label>5</label>
+          <label>👍</label>
           <%= f.input :review_content %>
           <%= f.submit "Submit", class: "btn btn-primary" %>
         <% end %>
