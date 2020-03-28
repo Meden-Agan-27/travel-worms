@@ -1,12 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $navy;
-  color: white;
+  color: $indigo;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  color: white;
+  color: $indigo;
 }
 
 .navbar-lewagon .navbar-brand img {
