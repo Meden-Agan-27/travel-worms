@@ -1,7 +1,7 @@
 #myBtn {
   display: none; /* Hidden by default */
   position: fixed; /* Fixed/sticky position */
-  top: 20px; /* Place the button at the top of the page */
+  top: 80vh; /* Place the button at the top of the page */
   right: 20px; /* Place the button 30px from the right */
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
@@ -9,8 +9,8 @@
   background-color: $navy; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 5px; /* Some padding */
-  border-radius: 100%; /* Rounded corners */
+  padding: 10px; /* Some padding */
+  border-radius: 20%; /* Rounded corners */
   font-size: 14px; /* Increase font size */
 }
 
