@@ -6,6 +6,13 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookshelves, through: :bookshelf_items
 
+  include PgSearch::Model
+  pg_search_scope :search_by_author_and_title,
+    against: [ :title, :author ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   def average_rating
     sum = 0
     @reviews = self.reviews.each do |review|
@@ -13,4 +20,5 @@ class Book < ApplicationRecord
     end
     sum / self.reviews.count
   end
+
 end

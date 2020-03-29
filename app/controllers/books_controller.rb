@@ -14,5 +14,8 @@ class BooksController < ApplicationController
     @review = Review.new
   end
 
+  def search
+
+  end
 
 end
