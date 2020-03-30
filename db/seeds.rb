@@ -38,7 +38,7 @@ def scrape_books(country)
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
     puts "albania - open goodreads"
-    html_doc.search('.elementList').first(5).each do |book|
+    html_doc.search('.elementList').first(30).each do |book|
       title = book.search('a').attribute('title').value
       author = book.search('.authorName').text
       book_url = book.search('.bookTitle').attribute('href')

@@ -9,30 +9,27 @@ class BooksController < ApplicationController
       @user_input = params[:search][:query]
       @books = Book.search_by_country(@user_input)
       @books = @books.where(language:current_user.preferred_language) if current_user
-    else
-      @books = Book.all
-    end
-
-    if !current_user
+    elsif !current_user
       @english_books = Book.where(language: "english" )
-        if current_user.preferred_language != "english"
-        @books = Book.where(language: current_user.preferred_language)
-          if @books.empty?
-            @english_books.each do |book|
-              new_title = {fra_title: book[:fra_title], spa_title: book[:spa_title]}
-              results = fetch_api(new_title)
-              if !book.fra_title.nil?
-              Book.create(title: book.fra_title, language: "french", country: book.country, author: book.author, image: results[:fra_results][:image], genre: "novel", original_title: book.original_title, description: results[:fra_results][:description])
-              elsif !book.spa_title.nil?
-              Book.create(title: book.spa_title, language: "spanish", country: book.country, author: book.author, image: results[:spa_results][:image], genre: "novel", original_title: book.original_title, description: results[:spa_results][:description])
-              end
+    else
+      if current_user.preferred_language != "english"
+      @books = Book.where(language: current_user.preferred_language)
+        if @books.empty?
+          @english_books.each do |book|
+            new_title = {fra_title: book[:fra_title], spa_title: book[:spa_title]}
+            results = fetch_api(new_title)
+            if !book.fra_title.nil?
+            Book.create(title: book.fra_title, language: "french", country: book.country, author: book.author, image: results[:fra_results][:image], genre: "novel", original_title: book.original_title, description: results[:fra_results][:description])
+            elsif !book.spa_title.nil?
+            Book.create(title: book.spa_title, language: "spanish", country: book.country, author: book.author, image: results[:spa_results][:image], genre: "novel", original_title: book.original_title, description: results[:spa_results][:description])
+            end
             end
         else
-        @books = Book.where(language: current_user.preferred_language)
+          @books = Book.where(language: current_user.preferred_language)
+        end
       end
     end
   end
-end
 
   def show
     @book = Book.find(params[:id])
