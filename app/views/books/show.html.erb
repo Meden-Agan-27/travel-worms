@@ -16,9 +16,11 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <% if signed_in?  %>
-                <% if current_user.bookshelves.empty? %>
-                    <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
-                <% end %>
+            <!-- option for new shelf creation to appear just if the user has no shelfs -->
+                <!-- <% if current_user.bookshelves.empty? %> -->
+                    <!-- <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a> -->
+                <!-- <% end %> -->
+                <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
                 <% current_user.bookshelves.each do |bookshelf| %>
                   <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
                 <% end %>

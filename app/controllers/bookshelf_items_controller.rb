@@ -24,15 +24,24 @@ class BookshelfItemsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @bookshelf_item = BookshelfItem.find(params[:book_id])
-  # end
-
-  # def update
-  #   @bookshelf_item = BookshelfItem.find(params[:book_id])
-  #   @bookshelf_item.update(bookshelf_item_params)
-  #   redirect_to bookshelves_path, notice: 'update done'
-  # end
+  def update
+    @bookshelf_item = BookshelfItem.find(params[:id])
+    # raise
+    if @bookshelf_item.update(bookshelf_item_params)
+      respond_to do |format|
+        format.html { redirect_back fallback_location: { action: "show"} }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+      else
+      respond_to do |format|
+        format.html { render 'books/show' }
+        format.js  # <-- idem
+      end
+    end
+    # raise
+    # redirect_back fallback_location: { action: "show"}
+    # redirect_to bookshelves_path(@bookshelf_item), notice: 'update done'
+  end
 
   def destroy
     @bookshelf_item = BookshelfItem.find(params[:bookshelf_id])
@@ -41,9 +50,9 @@ class BookshelfItemsController < ApplicationController
     redirect_to bookshelf_path
   end
 
-  # private
-  #   def bookshelf_item_params
-  #     params.require(:bookshelf_item).permit(:status)
-  #   end
+  private
+    def bookshelf_item_params
+      params.require(:bookshelf_item).permit(:status)
+    end
 
 end
