@@ -10,11 +10,16 @@ class BookshelvesController < ApplicationController
 
   def new
     @bookshelf = Bookshelf.new
+    unless params[:book].nil?
+      @book = Book.find(params[:book])
+      @bookshelf.bookshelf_items.build
+    end
   end
 
   def create
     @bookshelf = Bookshelf.new(bookshelf_params)
-    @bookshelf.user_id = current_user.id
+    @bookshelf.user = current_user
+
     if @bookshelf.save
       redirect_to bookshelves_path, notice: 'successfully created.'
     else
@@ -41,7 +46,7 @@ class BookshelvesController < ApplicationController
 
   private
     def bookshelf_params
-      params.require(:bookshelf).permit(:name, :description)
+      params.require(:bookshelf).permit(:name, :description, bookshelf_items_attributes: [:book_id, :status, :book_shelf_id])
     end
 
 end
