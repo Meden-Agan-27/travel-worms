@@ -2,7 +2,7 @@
 const mybutton = document.getElementById("myBtn");
 
 // add event listener to listen for click.
-mybutton.addEventListener("click", topFunction());
+mybutton.addEventListener("click", topFunction);
 
 // When the user scrolls down 20px from the top of the document, show the button
 
