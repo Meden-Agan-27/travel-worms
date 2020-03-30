@@ -1,0 +1,11 @@
+<%=  simple_form_for :search, method: :get, url: books_path, html: {class:"mt-5", id:"search_form"} do |f| %>
+  <%= f.input :query, label: false, placeholder: 'What country do you want to search?' %>
+  <%= f.submit 'Search', class: "btn btn-info w-100" %>
+<% end %>
+
+
+<script>
+  <% if params[:search].present? && params[:search][:query].match(/^\w+$/) %>
+  document.getElementById("search_query").value = " <%=params[:search][:query] %> "
+  <% end %>
+</script>
