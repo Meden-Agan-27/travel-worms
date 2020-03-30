@@ -1,8 +1,11 @@
 //Get the button:
-mybutton = document.getElementById("myBtn");
+const mybutton = document.getElementById("myBtn");
+
+// add event listener to listen for click.
+mybutton.addEventListener("click", topFunction);
 
 // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -17,3 +20,6 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+
+export { topFunction, scrollFunction };
