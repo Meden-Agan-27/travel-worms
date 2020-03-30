@@ -20,10 +20,11 @@
   color: #FFC107;
 }
 
-.nav-link-white {
+.btn {
+  background-color: $navy;
   color: white;
 }
 
-.btn {
-  background-color: $navy;
+a {
+  color:$navy;
 }
