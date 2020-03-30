@@ -1,6 +1,12 @@
 <%= simple_form_for @bookshelf do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <% unless @book.nil? %>
+  <%= f.simple_fields_for :bookshelf_items do |bookshelf_item| %>
+              <%= bookshelf_item.hidden_field :bookshelf_id , value: f.object.id %>
+              <%= bookshelf_item.hidden_field :book_id , value: @book.id %>
+          <% end %>
+          <% end %>
   <%= f.button :submit, class: "btn, btn-primary"%>
 <% end %>
 

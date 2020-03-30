@@ -34,7 +34,7 @@ class BookshelfItemsController < ApplicationController
       end
       else
       respond_to do |format|
-        format.html { render 'books/show' }
+        format.html { render bookshelves_path }
         format.js  # <-- idem
       end
     end
