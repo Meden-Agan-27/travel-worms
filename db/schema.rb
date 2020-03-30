@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_090104) do
+ActiveRecord::Schema.define(version: 2020_03_30_112001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_090104) do
     t.string "original_title"
     t.string "fra_title"
     t.string "spa_title"
+    t.text "description"
   end
 
   create_table "bookshelf_items", force: :cascade do |t|
