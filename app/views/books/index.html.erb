@@ -2,14 +2,17 @@
 <h1 class="text-center">All books</h1>
 
 <%= render 'shared/search_form' %>
+<br>
 
-<button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
+<button id="myBtn" title="Go to top">Up</button>
 <div class="cards">
+  <% if @books %>
 <% @books.each do |book| %>
 <div class="card-body">
 <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= book.image %>);"></div>
 <div class="card-text text-center"><h6> <em><%= link_to book.title, book, class: "stretched-link"  %></em></h6> <h6><strong><%= book.author  %></strong></h6></div>
 </div>
+<% end %>
 <% end %>
 </div>
 </div>
