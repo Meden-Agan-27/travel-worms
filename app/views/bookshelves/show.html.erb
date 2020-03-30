@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      <%= link_to "edit", edit_bookshelf_path(@bookshelf) %>
+      <%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf) %>
       <h1 class="text-center"><%= current_user.username.capitalize %>'s books on <em>'<%= @bookshelf.name %>'</em> shelf</h1>
 
       <p class="text-center"><%= @bookshelf.description %></p><br>
@@ -19,10 +19,7 @@
         <!-- start form for status -->
         <div class="col-md-4 col-md-offset-3">
         <%= simple_form_for [item.bookshelf, item], remote: true do |f| %>
-        <%= f.select :status, { collection: ['to read', 'reading', 'completed'], selected: item.status }, {class: 'form-control'}, { onchange: 'this.form.submit();'} %>
-        <%#= f.select :status, collection: ['to read', 'reading', 'completed'], selected: item.status, {}, { onchange: 'this.form.submit();'}, class: 'form-control' %>
-        <%#= f.input :status, collection: ['to read', 'reading', 'completed'], selected: item.status, {}, { onchange: 'this.form.submit();' } %>
-        <!-- <%= f.submit %> -->
+        <%= f.select :status, { collection: ['to read', 'reading', 'completed'], selected: item.status }, {}, { onchange: 'this.form.submit();'} %>
         <%#= f.button :submit %>
         </div>
           <!-- end form-->
