@@ -39,17 +39,22 @@ html {
   color: #D23333;
 }
 
-  /* If the screen size is 601px wide or more, set the font-size of <div> to 16px */
-@media screen and (min-width: 601px) {
+
+@media (min-width: 100px) and (max-width: 575px) {
   div.footer-copyright {
-    font-size: 16px;
+    font-size: 8px;
   }
 }
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 12px */
-@media screen and (max-width: 600px) {
+
+@media (min-width: 576px) {
   div.footer-copyright {
     font-size: 12px;
+  }
+}
+  @media (min-width: 768px) {
+  div.footer-copyright {
+    font-size: 16px;
   }
 }
 
