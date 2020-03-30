@@ -1,57 +1,81 @@
-<h1><%= @book.title %></h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
 
-  <link rel="stylesheet" href="styles/5star.css">
+      <div class="card-product">
+        <div class="card-product-img" >
+        <%= image_tag @book.image %>
+        </div>
+        <div class="card-product-infos">
+          <h5><%= @book.title %></h5>
+          <p>By <%= @book.author %></p>
+        <!-- start - this is a dropdown list for MyBookshelves -->
+        <div class="dropdown show mt-3">
+          <a class="btn btn-sm btn-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add to bookshelf
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <% if signed_in?  %>
+                <% if current_user.bookshelves.empty? %>
+                    <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
+                <% end %>
+                <% current_user.bookshelves.each do |bookshelf| %>
+                  <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- end -->
 
+           <% if @book.reviews.any? %>
+           <p>Average user rating:</p>
+          <font size="3" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
+           --><font size="3" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
+          <% end %>
 
-<p>Genre: <%= @book.genre.capitalize %></p>
-<p>Language: <%= @book.language.capitalize %></p>
-<br>
+          <p>Genre: <%= @book.genre.capitalize %></p>
+          <p>Language: <%= @book.language.capitalize %></p>
+          <p>Country: <%= @book.country.capitalize %></p>
+        </div>
+      </div>
+        <br>
 
-<!-- start - this is a dropdown list for MyBookshelves -->
-<div class="dropdown show">
-  <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Add this book on a bookshelf
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <% if @bookshelves.empty? %>
-    <a class="dropdown-item" href="/bookshelves/new">Create a new bookshelf</a>
-    <% end %>
-    <% @bookshelves.each do |bookshelf| %>
-    <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
-    <% end %>
+        <div class="container review">
+        <h3 class= "text-center">Leave a review</h3>
+        <%= simple_form_for [@book, @review] do |f| %>
+        <!--   <%= f.input :rating %> -->
+        <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
+
+<div class= "text-center">
+          <label>👎</label>
+          <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+          <%= b.radio_button + b.label {''} %>
+          <% end %>
+          <label>👍</label>
+          <%= f.input :review_content %>
+          </div>
+          <%= f.submit "Submit", class: "btn btn-primary w-100" %>
+        <% end %>
+      </div>
+        <br>
+
+      <div class="container review">
+        <h3 class= "text-center">Reviews</h3>
+        <% if @book.reviews.any? %>
+        <div>
+          <% @book.reviews.each do |review| %>
+            <span><strong><%= review.user.username %></strong></span>
+            <span><%= review.created_at %></span>
+            <p><font size="4" class="star"><%= "★" * review.rating %></font><!--Comment line necessary to remove whitespace
+            --><font size="4" class="star"><%= "☆" * (5 - review.rating) %></font></p>
+            <p><%= review.review_content %></p>
+          <% end %>
+        </div>
+        <% end %>
+        </div>
+        </div>
+
+        <%= link_to "Back to all books", books_path, class: "btn btn-primary mt-3" %>
+    </div>
   </div>
 </div>
-<!-- end -->
-
-<br>
-<h3>Leave a review</h3>
-<%= simple_form_for [@book, @review] do |f| %>
-<!--   <%= f.input :rating %> -->
-<!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
-  <p>Rating *</p>
-  <label>1</label>
-  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
-  <%= b.radio_button + b.label {''} %>
-  <% end %>
-  <label>5</label>
-  <%= f.input :review_content %>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
-<% end %>
-<br>
-<h3>Reviews</h3>
-<font size="4"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
- --><font size="4"><%= "☆" * (5 - @book.average_rating) %></font>
-<p><%= @book.average_rating %> out of 5</p>
-<div>
-  <% @book.reviews.each do |review| %>
-    <span><strong><%= review.user.username %></strong></span>
-    <span><%= review.created_at %></span>
-    <p><font size="4"><%= "★" * review.rating %></font><!--Comment line necessary to remove whitespace
-    --><font size="4"><%= "☆" * (5 - review.rating) %></font></p>
-    <p><%= review.review_content %></p>
-  <% end %>
-</div>
-
-<%= link_to "Back to all books", books_path %>
-
-

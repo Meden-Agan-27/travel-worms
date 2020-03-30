@@ -24,11 +24,15 @@ class BookshelfItemsController < ApplicationController
     end
   end
 
-  def update
-    @bookshelf_item = BookshelfItem.find(params[:bookshelf_id])
-    @bookshelf_item.update(bookshelf_params)
-    redirect_to bookshelves_path, notice: 'update done'
-  end
+  # def edit
+  #   @bookshelf_item = BookshelfItem.find(params[:book_id])
+  # end
+
+  # def update
+  #   @bookshelf_item = BookshelfItem.find(params[:book_id])
+  #   @bookshelf_item.update(bookshelf_item_params)
+  #   redirect_to bookshelves_path, notice: 'update done'
+  # end
 
   def destroy
     @bookshelf_item = BookshelfItem.find(params[:bookshelf_id])
