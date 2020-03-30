@@ -14,8 +14,10 @@ class BooksController < ApplicationController
     @review = Review.new
   end
 
-  def search
-
-  end
+  # Do I need this function?
+  # def search
+  #   user_input =
+  #   @books = Book.search_by_country("#{user_input}")
+  # end
 
 end

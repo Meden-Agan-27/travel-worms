@@ -1,5 +1,8 @@
 <div class="container">
 <h1 class="text-center">All books</h1>
+
+<%= render 'shared/search_form' %>
+
 <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
 <div class="cards">
 <% @books.each do |book| %>

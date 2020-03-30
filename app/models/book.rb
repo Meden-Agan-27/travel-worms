@@ -7,8 +7,8 @@ class Book < ApplicationRecord
   has_many :bookshelves, through: :bookshelf_items
 
   include PgSearch::Model
-  pg_search_scope :search_by_author_and_title,
-    against: [ :title, :author ],
+  pg_search_scope :search_by_country,
+    against: :country,
     using: {
       tsearch: { prefix: true }
     }
