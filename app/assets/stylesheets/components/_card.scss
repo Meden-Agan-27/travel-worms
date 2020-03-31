@@ -48,10 +48,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: #1B2A49;
-  border-width: 1px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // border-radius: 5px;
+  // border-style: solid;
+  // border-color: #1B2A49;
+  // border-width: 1px;
 }
 
 .card-title {
@@ -79,7 +80,7 @@ margin-top: 5px;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
+  // border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
