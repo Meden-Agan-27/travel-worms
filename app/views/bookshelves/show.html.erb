@@ -2,10 +2,11 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      <%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf) %>
+
       <h1 class="text-center"><%= current_user.username.capitalize %>'s books on <em>'<%= @bookshelf.name %>'</em> shelf</h1>
         <button id="myBtn" title="Go to top">Up</button>
-      <p class="text-center"><%= @bookshelf.description %></p><br>
+      <p class="text-center"><%= @bookshelf.description %></p>
+      <div class="text-right"><%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "btn btn-primary mb-3 mr-3" %></div>
       <% @bookshelf_items.each do |item| %>
         <% mybook = Book.find(item.book_id) %>
         <ul class="container">
@@ -29,7 +30,7 @@
         </li>
         </ul>
         <% end %>
-      <%= link_to 'Back to bookshelves', bookshelves_path %>
+    <div class="text-center"><%= link_to 'Back to bookshelves', bookshelves_path, class: "btn btn-primary mt-3" %></div>
     </div>
   </div>
 </div>
