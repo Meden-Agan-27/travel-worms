@@ -1,4 +1,5 @@
 class BookshelfItemsController < ApplicationController
+
   def index
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf_items = BookshelfItem.where(bookshelf_id: @bookshelf.id)
