@@ -2,7 +2,7 @@
   <div class="border-top">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h4 class="text-center mt-3">Hi, <%= current_user.username.capitalize %> you already have <em>'<%= @book.title %>'</em> on your <em>'<%= @bookshelf.name.capitalize %>'</em> shelf</h4>
+        <h4 class="text-center mt-3"><em>'<%= @book.title %>'</em> is already in your <em>'<%= @bookshelf.name.capitalize %>'</em> bookshelf</h4>
       </div>
     </div>
    <div class="text-center"><%= link_to 'Back to book', @book, class: "btn btn-primary mt-3" %></div>
