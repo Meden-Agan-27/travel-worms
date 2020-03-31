@@ -46,7 +46,7 @@
       <div class="container review">
         <h3 class= "text-center">Reviews</h3>
         <% if @book.reviews.any? %>
-        <div>
+        <div id="reviews">
           <% @book.reviews.each do |review| %>
             <%= render 'reviews/show', review: review %>
           <% end %>
