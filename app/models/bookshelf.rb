@@ -5,4 +5,6 @@ class Bookshelf < ApplicationRecord
   validates_presence_of :name
 
   accepts_nested_attributes_for :bookshelf_items, reject_if: :all_blank
+
+
 end
