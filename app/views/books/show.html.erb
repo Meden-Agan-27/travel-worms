@@ -39,44 +39,22 @@
           <p>Country: <%= @book.country.capitalize %></p>
         </div>
       </div>
-        <br>
 
-        <div class="container review">
-        <h3 class= "text-center">Leave a review</h3>
-        <%= simple_form_for [@book, @review] do |f| %>
-        <!--   <%= f.input :rating %> -->
-        <!-- The line above for simple form has been commented out because I implemented radio buttons below instead -->
-
-<div class= "text-center">
-          <label>👎</label>
-          <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
-          <%= b.radio_button + b.label {''} %>
-          <% end %>
-          <label>👍</label>
-          <%= f.input :review_content %>
-          </div>
-          <%= f.submit "Submit", class: "btn btn-primary w-100" %>
-        <% end %>
-      </div>
-        <br>
-
+      <br>
+      <%= render 'reviews/form', book: @book %>
+      <br>
       <div class="container review">
         <h3 class= "text-center">Reviews</h3>
         <% if @book.reviews.any? %>
         <div>
           <% @book.reviews.each do |review| %>
-            <span><strong><%= review.user.username %></strong></span>
-            <span><%= review.created_at %></span>
-            <p><font size="4" class="star"><%= "★" * review.rating %></font><!--Comment line necessary to remove whitespace
-            --><font size="4" class="star"><%= "☆" * (5 - review.rating) %></font></p>
-            <p><%= review.review_content %></p>
+            <%= render 'reviews/show', review: review %>
           <% end %>
         </div>
         <% end %>
         </div>
-        </div>
-
-        <%= link_to "Back to all books", books_path, class: "btn btn-primary mt-3" %>
+      </div>
+      <%= link_to "Back to all books", books_path, class: "btn btn-primary mt-3" %>
     </div>
   </div>
 </div>
