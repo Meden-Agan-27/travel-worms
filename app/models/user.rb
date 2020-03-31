@@ -10,5 +10,4 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :friendships_as_asker, source: :friendships, foreign_key: :asker_id
   has_many :friendships_as_receiver, source: :friendships, foreign_key: :receiver_id
-
 end
