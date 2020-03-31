@@ -1,0 +1,30 @@
+function refreshForm(innerHTML) {
+const newReviewForm = document.getElementById('review_review_content');
+newReviewForm.innerHTML = innerHTML;
+newReviewForm.value = "";
+const radioButtons = document.querySelectorAll('input[type=radio]');
+radioButtons.forEach((radio_button)=> {
+  radio_button.checked = false
+});
+}
+function refreshAverage(innerHTML) {
+  const newAverage = document.getElementById('average');
+  newAverage.innerHTML = innerHTML;
+}
+function addReview(reviewHTML) {
+  const reviews = document.getElementById('allreviews');
+  reviews.insertAdjacentHTML('beforeend', reviewHTML);
+}
+function addNotification(notificationHTML) {
+  const notification = document.getElementById('notification');
+  notification.innerHTML = notificationHTML;
+}
+
+<% if @review.errors.any? %>
+  refreshForm('<%= j render "reviews/form", book: @book, review: @review %>');
+<% else %>
+  addReview('<%= j render "reviews/show", review: @review %>');
+  refreshForm('<%= j render "reviews/form", book: @book, review: Review.new %>');
+  refreshAverage('<%= j render "reviews/average", book: @book %>');
+  addNotification('<%= j render "reviews/notification" %>');
+<% end %>
