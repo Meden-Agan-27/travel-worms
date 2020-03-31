@@ -14,9 +14,15 @@ class ReviewsController < ApplicationController
     @review.book = @book
     @review.user = current_user
     if @review.save!
-      redirect_to book_path(@book)
+      respond_to do |format|
+        format.html { redirect_to book_path(@book) }
+        format.js
+      end
     else
-      render "books/show"
+      respond_to do |format|
+        format.html { render 'books/show' }
+        format.js
+      end
     end
   end
 
