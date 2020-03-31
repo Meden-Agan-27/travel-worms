@@ -28,11 +28,7 @@
         </div>
         <!-- end dropdown-->
 
-           <% if @book.reviews.any? %>
-           <p>Average user rating:</p>
-          <font size="3" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
-           --><font size="3" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
-          <% end %>
+           <%= render 'reviews/average', book: @book %>
 
           <p>Genre: <%= @book.genre.capitalize %></p>
           <p>Language: <%= @book.language.capitalize %></p>
@@ -45,11 +41,13 @@
       <br>
       <div class="container review">
         <h3 class= "text-center">Reviews</h3>
+        <div id="allreviews">
         <% if @book.reviews.any? %>
-        <div id="reviews">
-          <% @book.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
+          <div id="reviews">
+            <% @book.reviews.each do |review| %>
+              <%= render 'reviews/show', review: review %>
+            <% end %>
+          </div>
         </div>
         <% end %>
         </div>

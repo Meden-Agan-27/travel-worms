@@ -1,0 +1,7 @@
+<div id="average">
+<% if @book.reviews.any? %>
+  <p>Average user rating:</p>
+  <font size="3" class="star"><%= "★" * @book.average_rating %></font><!--Comment line necessary to remove whitespace
+--><font size="3" class="star"><%= "☆" * (5 - @book.average_rating) %></font>
+<% end %>
+</div>
