@@ -47,7 +47,7 @@ User.new(username: "rafiki", password: "password", email: "rafiki@book.com", pre
 
 puts "Creating Profile"
 Profile.new(first_name: "Madeline", last_name: "Andrean", about: "I like books", user: User.first ).save
-Profile.new(first_name: "Gheorghe", last_name: "Tarcea", about: "I am always late", user: User.last).save
+Profile.new(first_name: "Gheorghe", last_name: "Tarcea", about: "I am always late", user: User.second).save
 
 puts "Creating Bookshelves"
 Bookshelf.new(name: "my_books", user: User.first).save
