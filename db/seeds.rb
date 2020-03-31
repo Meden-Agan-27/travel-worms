@@ -46,11 +46,11 @@ User.new(username: "sano", password: "password", email: "sano@book.com", preferr
 User.new(username: "rafiki", password: "password", email: "rafiki@book.com", preferred_language: "french").save
 
 puts "Creating Bookshelves"
-Bookshelf.new(name: "my_books", user: User.first).save
-Bookshelf.new(name: "my_books", user: User.last).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.first).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.last).save
 Bookshelf.new(name: "later", user: User.first).save
 Bookshelf.new(name: "later", user: User.last).save
-Bookshelf.new(name: "my_books", user: User.second).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.second).save
 Bookshelf.new(name: "later", user: User.second).save
 
 puts "Creating Bookshelf_items"

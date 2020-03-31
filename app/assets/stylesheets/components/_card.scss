@@ -83,4 +83,8 @@ margin-top: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
-
+// new cards
+.cstm-height-card .card-img-top {
+  height: 100px;
+  object-fit: cover;
+}
