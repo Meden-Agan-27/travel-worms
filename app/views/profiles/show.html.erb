@@ -3,6 +3,9 @@
     <div class="text-right"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary mt-3" %></div>
     <div class="row justify-content-center">
       <div class="col-12">
+
+
+
         <p>
           <strong>First Name:</strong>
           <%= @profile.first_name.capitalize %>
@@ -27,9 +30,12 @@
           Language:
           <%= @profile.user.preferred_language %>
         </p>
-
+        <% if @profile.photo.attached? %>
+        <%= cl_image_tag @profile.photo.key, class: "avatar-large", alt: "avatar-large" %>
+        <% end %>
         <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary mt-3" %></div>
       </div>
     </div>
   </div>
 </div>
+
