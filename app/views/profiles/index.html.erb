@@ -1,39 +1,40 @@
 
 <h1>All Profiles</h1>
-
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">City</th>
-      <th scope="col">Email</th>
-      <th scope="col">Username</th>
-      <th scope="col">About</th>
-      <th scope="col">Preferred language</th>
-      <th scope="col">See profile</th>
-      <th scope="col">Edit profile</th>
-      <th scope="col">Delete profile</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @profiles.each do |profile| %>
-    <tr>
-      <td><%= profile.first_name %></td>
-        <td><%= profile.last_name %></td>
-        <td><%= profile.user.city %></td>
-        <td><%= profile.user.email %></td>
-        <td><%= profile.user.username %></td>
-        <td><%= profile.about %></td>
-        <td><%= profile.user.preferred_language %></td>
-        <td><%= link_to 'See', profile %></td>
-        <% if profile.user == current_user %>
-        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<small>
+<div class="table-responsive-md">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">About</th>
+        <th scope="col">Preferred language</th>
+        <th scope="col">See profile</th>
+        <th scope="col">Edit profile</th>
+        <th scope="col">Delete profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.first_name %></td>
+          <td><%= profile.last_name %></td>
+          <td><%= profile.user.city %></td>
+          <td><%= profile.user.email %></td>
+          <td><%= profile.user.username %></td>
+          <td><%= profile.about %></td>
+          <td><%= profile.user.preferred_language %></td>
+          <td><%= link_to 'See', profile %></td>
+          <% if profile.user == current_user %>
+          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+          <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</small>

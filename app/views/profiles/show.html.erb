@@ -1,12 +1,15 @@
 <div class="container">
   <div class="border-top">
-    <div class="text-right"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary mt-3" %></div>
+    <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
     <div class="row justify-content-center">
       <div class="col-12">
-
-
-
-        <p>
+        <% if @profile.photo.attached? %>
+          <div class="text-center m-3"><%= cl_image_tag(@profile.photo.key, :transformation=>[
+            {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
+            {:width=>160, :crop=>"scale"}
+            ]) %>
+          </div>
+          <% end %>
           <strong>First Name:</strong>
           <%= @profile.first_name.capitalize %>
         </p>
@@ -15,7 +18,6 @@
           <strong>Last Name:</strong>
           <%= @profile.last_name.capitalize %>
         </p>
-
         <p>Username:
          <%= @profile.user.username %><br>
          City:
@@ -30,12 +32,40 @@
           Language:
           <%= @profile.user.preferred_language %>
         </p>
-        <% if @profile.photo.attached? %>
-        <%= cl_image_tag @profile.photo.key, class: "avatar-large", alt: "avatar-large" %>
-        <% end %>
         <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary mt-3" %></div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="card-product">
+  <% if @profile.photo.attached? %>
+  <div class="card-product-img"> <%= cl_image_tag(@profile.photo.key, :transformation=>[
+            {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
+            {:width=>140, :crop=>"scale"}
+            ]) %>
+  </div>
+  <% end %>
+  <div class="card-product-infos">
+    <p>
+          <%= @profile.first_name.capitalize %>
+        </p>
+
+        <p>
+          <%= @profile.last_name.capitalize %>
+        </p>
+        <p>Username:
+         <%= @profile.user.username %><br>
+         City:
+         <%= @profile.user.city %><br>
+         email:
+         <%= @profile.user.email %>
+        </p>
+        <p>
+          <strong>About me:</strong>
+          <%= @profile.about %><br>
+          Language:
+          <%= @profile.user.preferred_language %>
+        </p>
+  </div>
+</div>
