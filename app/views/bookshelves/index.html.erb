@@ -57,7 +57,8 @@
           <div class="card">
             <img src="https://images.unsplash.com/photo-1468487422149-5edc5034604f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" class="card-img-top" alt="...">
             <div class="card-body">
-              <h4 class="card-title"><strong><%= bookshelf.name.capitalize %></strong></h4>
+
+              <%= link_to bookshelf.name.capitalize, bookshelf, class: "link-title"%>
               <!-- start counter books -->
               <% if bookshelf.bookshelf_item_ids.length == 1 %>
                 <p class="card-text"><em><%= "1 book" %></em></p>
@@ -66,10 +67,23 @@
                 <%=  %>
               <% end %>
               <!-- end counter books -->
-
+              <!-- calculation for progress-bar -->
+              <% if bookshelf.bookshelf_item_ids.length > 0 %>
+              <% count = 0 %>
+              <% bookshelf.bookshelf_item_ids.each do |id| %>
+                <% item = BookshelfItem.find(id) %>
+                <% if item.status == 'completed' %>
+                <% count += 1 %>
+                <% end %>
+              <% end %>
+              <% calc = ((count.to_f / bookshelf.bookshelf_item_ids.length) * 100).to_f.floor(0) %>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <%= calc %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= calc %>%</div>
+              </div>
+              <% end %>
+              <!-- end progress-bar -->
               <p class="card-text"><%= bookshelf.description %></p>
-              <%=link_to "See my books", bookshelf, class: "btn" %>
-              <%= link_to '<i class="fas fa-trash"></i>'.html_safe, "bookshelves/#{bookshelf.id}", method: :delete %>
+              <%= link_to '<i class="fas fa-trash icons"></i>'.html_safe, "bookshelves/#{bookshelf.id}", method: :delete %>
             </div>
           </div>
         </div>
