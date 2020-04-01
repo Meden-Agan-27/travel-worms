@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-12">
 
-      <h1 class="text-center"><%= @bookshelf.name.capitalize %></h1>
+      <h2 class="text-center"><%= @bookshelf.name.capitalize %></h2>
         <button id="myBtn" title="Go to top">Up</button>
       <p class="text-center"><%= @bookshelf.description %></p>
       <div class="text-right"><%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "btn btn-primary mb-3 mr-3" %></div>
