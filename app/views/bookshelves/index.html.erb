@@ -1,6 +1,6 @@
 <div class="container">
 <button id="myBtn" title="Go to top">Up</button>
-  <h2 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h2>
+  <h3 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h3>
   <div class="text-right "><%= link_to 'Add a bookshelf', "bookshelves/new", class: "btn btn-primary mb-3 mr-3" %></div>
       <div class="row mb-5 cstm-height-card d-flex">
   <% if @bookshelves.empty? %>
