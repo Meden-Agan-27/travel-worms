@@ -7,16 +7,15 @@
             <div class="container">
                <% if @profile.photo.attached? %>
               <div class="text-center m-3"><%= cl_image_tag(@profile.photo.key, :transformation=>[
-                {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
+                {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"fill"},
                 {:width=>160, :crop=>"scale"}
                 ]) %>
               </div>
           <% end %>
           <div class="text-sm-left text-md-left text-lg-justify">
-        <p>Username:
-         <%= @profile.user.username %><br>
-         Email: <%= @profile.user.email %><br>
-         Language: <%= @profile.user.preferred_language %>
+        <p><strong>Username:</strong><%= @profile.user.username %><br>
+         <strong>Email: </strong><%= @profile.user.email %><br>
+         <strong>Language: </strong><%= @profile.user.preferred_language %>
         </p>
         <p>
           <strong>About me:</strong>

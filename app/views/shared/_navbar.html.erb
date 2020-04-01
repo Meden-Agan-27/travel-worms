@@ -22,15 +22,13 @@
             <% if current_user.profile.photo.attached? %>
             <%= cl_image_tag current_user.profile.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= cl_image_tag("uFQctjvkbeZAyAL8TySgyfPB", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
             <% end %>
-            <% else %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           <small><%= current_user.username.capitalize %></small>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Bookshelves", bookshelves_path, class: "dropdown-item" %>
-            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Your friends profiles", "profiles/", class: "dropdown-item" %>
             <% if current_user.profile %>
             <%= link_to "My profile", "profiles/#{current_user.profile.id}", class: "dropdown-item" %>
             <% else %>
