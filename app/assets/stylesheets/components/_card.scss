@@ -44,15 +44,11 @@
   width: 240px;
   height: 300px;
   background-color: white;
-  justify-content: center;
+  justify-content: top;
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  // border-radius: 5px;
-  // border-style: solid;
-  // border-color: #1B2A49;
-  // border-width: 1px;
+  border-radius: 5px;
 }
 
 .card-title {
@@ -84,4 +80,14 @@ margin-top: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
+// new cards
+.cstm-height-card .card-img-top {
+  height: 100px;
+  object-fit: cover;
+}
 
+.trash-right {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}
