@@ -50,11 +50,11 @@ Profile.new(first_name: "Madeline", last_name: "Andrean", about: "I like books",
 Profile.new(first_name: "Gheorghe", last_name: "Tarcea", about: "I am always late", user: User.second).save
 
 puts "Creating Bookshelves"
-Bookshelf.new(name: "my_books", user: User.first).save
-Bookshelf.new(name: "my_books", user: User.last).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.first).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.last).save
 Bookshelf.new(name: "later", user: User.first).save
 Bookshelf.new(name: "later", user: User.last).save
-Bookshelf.new(name: "my_books", user: User.second).save
+Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.second).save
 Bookshelf.new(name: "later", user: User.second).save
 
 puts "Creating Bookshelf_items"
