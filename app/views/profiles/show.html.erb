@@ -3,6 +3,7 @@
     <% if current_user.id == params[:id].to_i %>
     <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
     <% else %>
+    <div class="text-center"><%= link_to 'Befriend', new_friendship_path, class: "btn btn-primary m-3" %></div>
     <% end %>
     <div class="row justify-content-center">
       <div class="col-12">

@@ -15,18 +15,4 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @review = Review.new
   end
-
-  # def index
-  #   if params[:search].present? && params[:search][:query].match(/^\d+$/)
-  #     user_input = params[:search][:query]
-  #     @movies = Movie.where(year: user_input)
-  #   elsif params[:search].present?
-  #     user_input = params[:search][:query]
-  #     @movies_pg_format = PgSearch.multisearch(user_input)
-  #     @movies = @movies_pg_format.map(&:searchable)
-  #   else
-  #     @movies = Movie.all
-  #   end
-  # end
-
 end
