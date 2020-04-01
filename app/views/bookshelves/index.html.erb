@@ -2,14 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <button id="myBtn" title="Go to top">Up</button>
-      <h1 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h1>
+      <h2 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h2>
       <div class="text-right "><%= link_to 'Add a bookshelf', "bookshelves/new", class: "btn btn-primary mb-3 mr-3" %></div>
       <% if @bookshelves.empty? %>
       <h5 class="text-center">You have not created any bookshelves yet.</h5>
       <% else %>
       <% @bookshelves.each do |bookshelf| %>
         <ul class="container">
-        <li class="list-group-item"><strong><%=link_to bookshelf.name.capitalize, bookshelf %></strong>
+        <li class="list-group-item"><strong class="booklink"><%=link_to bookshelf.name.capitalize, bookshelf %></strong>
          <!-- start counter books -->
          <% if bookshelf.bookshelf_item_ids.length == 1 %>
          <%= "(1 book)" %>
@@ -28,7 +28,7 @@
           <% end %>
           <% calc = ((count.to_f / bookshelf.bookshelf_item_ids.length) * 100).to_f.floor(0) %>
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <%= calc %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= calc %>%</div>
+            <div class="progress-bar" role="progressbar" style="width: <%= calc %>%; background-color: #28464B; opacity: 0.6" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= calc %>%</div>
           </div>
           <% end %>
           <!-- end progress-bar -->
