@@ -48,12 +48,12 @@
 
 <div class="container">
   <h1 class="text-center"><%= current_user.username.capitalize %>'s Bookshelves</h1>
+      <div class="row mb-5 cstm-height-card d-flex">
   <% if @bookshelves.empty? %>
     <h5 class="text-center">You have not created any bookshelves yet.</h5>
   <% else %>
     <% @bookshelves.each do |bookshelf| %>
-      <div class="row mb-5 cstm-height-card">
-        <div class="col-md-4">
+        <div class="col-md-4 flex-item p-20">
           <div class="card">
             <img src="https://images.unsplash.com/photo-1468487422149-5edc5034604f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" class="card-img-top" alt="...">
             <div class="card-body">
@@ -87,7 +87,7 @@
             </div>
           </div>
         </div>
-      </div>
     <% end %>
+      </div>
   <% end %>
 </div>
