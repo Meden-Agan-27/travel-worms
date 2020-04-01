@@ -28,3 +28,24 @@
 a {
   color:$navy;
 }
+
+.link-title {
+  color: $navy;
+  font-size: 28px;
+  text-decoration: none;
+  &:hover {
+  color: Grey;
+  text-decoration: none;
+  }
+}
+.icons {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: Grey;
+  }
+}
+
+.p-20 {
+  padding: 20px;
+}
