@@ -1,0 +1,7 @@
+<%= simple_form_for @profile do |f| %>
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :about %>
+<%= f.input :photo, as: :file %>
+<%= f.button :submit, class: "btn, btn-primary"%>
+<% end %>
