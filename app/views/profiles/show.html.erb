@@ -1,6 +1,9 @@
 <div class="container">
   <div class="border-top">
+    <% if current_user.id == params[:id].to_i %>
     <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
+    <% else %>
+    <% end %>
     <div class="row justify-content-center">
       <div class="col-12">
         <% if @profile.photo.attached? %>
@@ -32,7 +35,7 @@
           Language:
           <%= @profile.user.preferred_language %>
         </p>
-        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary mt-3" %></div>
+        <div class="text-center"><%= link_to 'Back to user search', profiles_path, class: "btn btn-primary mt-3" %></div>
       </div>
     </div>
   </div>

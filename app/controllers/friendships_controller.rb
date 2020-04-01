@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
 
-# step 1: Display all users through pages_controller (or maybe ProfileController)
+# step 1: Display all users through ProfileController (Went with no display unless search)
 # step 2: Show 1 user profile
 # step 3: Being able to send a friendship request
 # step 4: default status: pending
@@ -9,6 +9,7 @@ class FriendshipsController < ApplicationController
 # step 7: see notification when new friendship request comes in
 
   def create
+    @friendship = Friendship.new
   end
 
   def accept

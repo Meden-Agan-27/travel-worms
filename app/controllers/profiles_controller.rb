@@ -1,7 +1,14 @@
 class ProfilesController < ApplicationController
 
   def index
-    @profiles = Profile.all
+    if params[:query].present?
+      @user = User.where(username: params[:query])
+      if @user.empty?
+        @profile = nil
+      else
+        @profile = @user[0].profile
+      end
+    end
   end
 
   def show
