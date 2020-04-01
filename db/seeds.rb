@@ -45,6 +45,10 @@ User.new(username: "ghita", password: "password", email: "ghita@book.com", prefe
 User.new(username: "sano", password: "password", email: "sano@book.com", preferred_language: "english").save
 User.new(username: "rafiki", password: "password", email: "rafiki@book.com", preferred_language: "french").save
 
+puts "Creating Profile"
+Profile.new(first_name: "Madeline", last_name: "Andrean", about: "I like books", user: User.first ).save
+Profile.new(first_name: "Gheorghe", last_name: "Tarcea", about: "I am always late", user: User.second).save
+
 puts "Creating Bookshelves"
 Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.first).save
 Bookshelf.new(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.last).save

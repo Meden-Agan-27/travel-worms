@@ -1,0 +1,17 @@
+<div class="container review">
+  <h3 class= "text-center">Leave a review</h3>
+  <%= simple_form_for([@book, @review], remote: true) do |f| %>
+  <div class= "text-center">
+  <p><font size="3.5">Rating*</font></p>
+  <label>👎</label>
+  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline do |b| %>
+  <%= b.radio_button + b.label {''} %>
+  <% end %>
+  <label>👍</label>
+  <%= f.input :review_content %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary w-100" %>
+  <% end %>
+  <div id="notification">
+  </div>
+</div>

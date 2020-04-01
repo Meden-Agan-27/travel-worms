@@ -1,0 +1,9 @@
+<div class="card-review">
+  <div class="card-review-body">
+    <span class="card-review-title"><strong><%= review.user.username %></strong></span>
+    <span><%= review.created_at.strftime("%B %d, %Y") %></span>
+    <p><font size="4" class="star"><%= "★" * review.rating %></font><!--Comment line necessary to remove whitespace
+ --><font size="4" class="star"><%= "☆" * (5 - review.rating) %></font></p>
+    <p class="card-review-text"><%= review.review_content %></p>
+  </div>
+</div>
