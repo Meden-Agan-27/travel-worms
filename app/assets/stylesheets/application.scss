@@ -20,11 +20,32 @@
   color: #FFC107;
 }
 
-.btn {
-  background-color: $navy;
-  color: white;
-}
+// .btn {
+//   background-color: $gold;
+//   color: white;
+// }
 
 a {
-  color:$navy;
+  color:$indigo;
+}
+
+.link-title {
+  color: $indigo;
+  font-size: 28px;
+  text-decoration: none;
+  &:hover {
+  color: Grey;
+  text-decoration: none;
+  }
+}
+.icons {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: Grey;
+  }
+}
+
+.p-20 {
+  padding: 20px;
 }

@@ -5,36 +5,26 @@
     <% else %>
     <div class="text-center"><%= link_to 'Befriend', friendships_path(asker_id: current_user.id, receiver_id: @profile.user.id), method: :post, class: "btn btn-primary m-3" %></div>
     <% end %>
+    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
     <div class="row justify-content-center">
-      <div class="col-12">
-        <% if @profile.photo.attached? %>
-          <div class="text-center m-3"><%= cl_image_tag(@profile.photo.key, :transformation=>[
-            {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
-            {:width=>160, :crop=>"scale"}
-            ]) %>
-          </div>
+      <div class="col-9">
+          <div class="card-profile">
+            <div class="container">
+               <% if @profile.photo.attached? %>
+              <div class="text-center m-3"><%= cl_image_tag(@profile.photo.key, :transformation=>[
+                {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"fill"},
+                {:width=>160, :crop=>"scale"}
+                ]) %>
+              </div>
           <% end %>
-          <strong>First Name:</strong>
-          <%= @profile.first_name.capitalize %>
+          <div class="text-sm-left text-md-left text-lg-justify">
+        <p><strong>Username: </strong><%= @profile.user.username %><br>
+         <strong>Email: </strong><%= @profile.user.email %><br>
+         <strong>Language: </strong><%= @profile.user.preferred_language.capitalize %>
         </p>
-
-        <p>
-          <strong>Last Name:</strong>
-          <%= @profile.last_name.capitalize %>
-        </p>
-        <p>Username:
-         <%= @profile.user.username %><br>
-         City:
-         <%= @profile.user.city %><br>
-         email:
-         <%= @profile.user.email %>
-        </p>
-
         <p>
           <strong>About me:</strong>
           <%= @profile.about %><br>
-          Language:
-          <%= @profile.user.preferred_language %>
         </p>
         <div class="text-center"><%= link_to 'Back to user search', profiles_path, class: "btn btn-primary mt-3" %></div>
       </div>
@@ -42,34 +32,3 @@
   </div>
 </div>
 
-<div class="card-product">
-  <% if @profile.photo.attached? %>
-  <div class="card-product-img"> <%= cl_image_tag(@profile.photo.key, :transformation=>[
-            {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
-            {:width=>140, :crop=>"scale"}
-            ]) %>
-  </div>
-  <% end %>
-  <div class="card-product-infos">
-    <p>
-          <%= @profile.first_name.capitalize %>
-        </p>
-
-        <p>
-          <%= @profile.last_name.capitalize %>
-        </p>
-        <p>Username:
-         <%= @profile.user.username %><br>
-         City:
-         <%= @profile.user.city %><br>
-         email:
-         <%= @profile.user.email %>
-        </p>
-        <p>
-          <strong>About me:</strong>
-          <%= @profile.about %><br>
-          Language:
-          <%= @profile.user.preferred_language %>
-        </p>
-  </div>
-</div>
