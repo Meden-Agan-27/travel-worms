@@ -6,11 +6,17 @@ class BooksController < ApplicationController
 
   def index
     if params[:search].present? && params[:search][:query].match(/^\w+$/)
+      @query = true
       @user_input = params[:search][:query]
       @books = Book.search_by_country(@user_input)
       @books = @books.where(language:current_user.preferred_language) if current_user
     else
-      @books = current_user.nil? ? @books = Book.all : Book.where(language: current_user.preferred_language)
+      @query = false
+      if signed_in
+        @books = current_user.nil? ? @books = Book.all : Book.where(language: current_user.preferred_language)
+      else
+        @books = Book.all
+      end
     end
   end
 

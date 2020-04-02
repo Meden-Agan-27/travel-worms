@@ -1,6 +1,12 @@
 <div class="container">
-<h1 class="text-center">All books</h1>
 
+<% if @query %>
+<h4 class="text-center">Your results for "<%= @user_input %>"</h4>
+<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+<% else %>
+<h4 class="text-center">Search all books</h4>
+<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+<% end %>
 <%= render 'shared/search_form' %>
 <br>
 <% if params[:search].present? %>
@@ -15,12 +21,12 @@
 
 
 <button id="myBtn" title="Go to top">Up</button>
-<div class="cards">
+<div class="cards-book">
   <% if @books %>
 <% @books.each do |book| %>
-<div class="card-body">
-<div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= book.image %>);"></div>
-<div class="card-text text-center"><h6> <em><%= link_to book.title, book, class: "stretched-link"  %></em></h6> <h6><strong><%= book.author  %></strong></h6></div>
+<div class="card-body-book">
+<div class="card-image-book" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= book.image %>);"></div>
+<div class="card-text-book text-center"><h6><%= link_to book.title, book, class: "stretched-link"  %></h6> <h6 style="font-family: Mukta Mahee"><strong><%= book.author  %></strong></h6></div>
 </div>
 <% end %>
 <% end %>
