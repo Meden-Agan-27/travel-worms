@@ -1,40 +1,55 @@
 
-<h1>All Profiles</h1>
-<small>
-<div class="table-responsive-md">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">City</th>
-        <th scope="col">Email</th>
-        <th scope="col">Username</th>
-        <th scope="col">About</th>
-        <th scope="col">Preferred language</th>
-        <th scope="col">See profile</th>
-        <th scope="col">Edit profile</th>
-        <th scope="col">Delete profile</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @profiles.each do |profile| %>
-      <tr>
-        <td><%= profile.first_name %></td>
-          <td><%= profile.last_name %></td>
-          <td><%= profile.user.city %></td>
-          <td><%= profile.user.email %></td>
-          <td><%= profile.user.username %></td>
-          <td><%= profile.about %></td>
-          <td><%= profile.user.preferred_language %></td>
-          <td><%= link_to 'See', profile %></td>
-          <% if profile.user == current_user %>
-          <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-          <td><%= link_to 'Delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+<div class="container">
+  <div class="border-top">
+    <h1 class="text-center">All Profiles</h1>
+    <div class="row justify-content-center">
+
+      <div class="col-12">
+          <% @profiles.each do |profile| %>
+          <div class="notification">
+            <% if profile.photo.attached? %>
+                        <div class="text-center m-3"><%= cl_image_tag(profile.photo.key, :transformation=>[
+                          {:width=>100, :height=>100, :gravity=>"face", :radius=>"500", :crop=>"fill"},
+                          {:width=>50, :crop=>"scale"}
+                          ]) %>
+                        </div>
+                        <% else %>
+                        <%= cl_image_tag("uFQctjvkbeZAyAL8TySgyfPB", :transformation=>[
+                          {:width=>100, :height=>100, :gravity=>"face", :radius=>"500", :crop=>"fill"},
+                          {:width=>50, :crop=>"scale"}
+                          ])  %>
+                    <% end %>
+            <div class="notification-content">
+              <small>
+                <p>Username: <%= profile.user.username %></p>
+                <p>Email: <%= profile.user.email %></p>
+                <p>Language: <%= profile.user.preferred_language %></p>
+              </small>
+            </div>
+
+            <div class="notification-actions">
+              <ul class="list-group">
+              <li class="list-group-item border-0"><%= link_to '  ', profile, class: "fas fa-eye" %></li>
+              <% if profile.user == current_user %>
+                <li class="list-group-item border-0"><%= link_to '  ', edit_profile_path(profile), class: "fas fa-pencil-alt" %></li>
+                <li class="list-group-item border-0"><%= link_to '  ', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %></li>
+              </ul>
+              <% end %>
+
+            </div>
+          </div>
           <% end %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
