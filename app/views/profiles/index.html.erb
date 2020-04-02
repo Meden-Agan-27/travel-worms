@@ -1,13 +1,11 @@
-
-
-
 <div class="container">
 <!--   <div class="border-top"> -->
-    <h4 class="text-center">All Profiles</h4>
+    <h4 class="text-center">My Friends</h4>
     <div class="row justify-content-center">
 
       <div class="col-12">
           <% @profiles.each do |profile| %>
+          <% unless profile.user == current_user %> <!-- current_user is not showen in the list -->
           <div class="notification">
             <% if profile.photo.attached? %>
                         <div class="text-center m-3"><%= cl_image_tag(profile.photo.key, :transformation=>[
@@ -37,10 +35,11 @@
                 <li class="list-group-item border-0"><%= link_to '  ', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %></li>
               </ul>
               <% end %>
-
+              <% end %> <!-- end current_user is not showen in the list -->
             </div>
           </div>
           <% end %>
+          <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
         </div>
       </div>
 <!--     </div> -->
