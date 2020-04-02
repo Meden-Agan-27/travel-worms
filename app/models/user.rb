@@ -12,7 +12,7 @@ class User < ApplicationRecord
   before_create :create_profile
 
   def create_profile
-    profile = build_profile(first_name: "First Name", last_name: "Last name", about: "About me")
+    profile = build_profile(first_name: "", last_name: "", about: "")
   end
 
 end

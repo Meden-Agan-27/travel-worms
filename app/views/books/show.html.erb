@@ -20,12 +20,15 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <% if signed_in?  %>
+            <small>
                 <form class="dropdown-item" action="/bookshelves/new" method="get">
                 <%= hidden_field_tag :book, @book.id %>
                 <input type="submit" value="Create a new bookshelf">
                 </form>
+            </small>
                 <% current_user.bookshelves.each do |bookshelf| %>
                   <%= link_to bookshelf.name.capitalize, bookshelf_bookshelf_items_path(bookshelf_id: bookshelf, book_id: @book), class: "dropdown-item", method: :post %>
+
                 <% end %>
             <% end %>
           </div>
