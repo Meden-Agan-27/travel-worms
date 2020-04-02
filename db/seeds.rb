@@ -5,11 +5,16 @@ def fetch_api_description(isbn)
   g_book_items = JSON.parse(open(url).read)['items']
   if !g_book_items.nil?
     g_book = g_book_items.first['volumeInfo']
-    description = g_book['description'].nil? ? "" : g_book['description']
-    image = g_book['imageLinks'].nil? ? "" : g_book['imageLinks']['thumbnail']
-    results = {description: description, image: image}
+    description = g_book['description'].nil? ? nil : g_book['description']
+    puts "description: #{description}"
+    image = g_book['imageLinks'].nil? ? nil : g_book['imageLinks']['thumbnail']
+    if image.nil? || description.nil?
+      results = nil
+    else
+      results = {description: description, image: image}
+    end
   else
-    results = {description: "", image: ""}
+    results = nil
   end
 end
 
@@ -26,7 +31,8 @@ def scrape_books(country)
       author = book.search('.authorName').text
       book_url = book.search('.bookTitle').attribute('href')
       results = scrape_one_book(book_url)
-      Book.create(title: title, language: "english", country: country, author: author, image: results[:image], genre: "novel", description: results[:description], isbn: results[:isbn])
+      puts "results: #{results}"
+      Book.create(title: title, language: "english", country: country, author: author, image: results[:image], genre: "novel", description: results[:description], isbn: results[:isbn]) if !results.nil?
     end
    rescue URI::InvalidURIError
     puts "Invalid country"
@@ -37,13 +43,19 @@ def scrape_one_book(book_url)
     url = "https://www.goodreads.com#{book_url}"
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    image = html_doc.search('#coverImage').attribute('src').nil? ? "" : html_doc.search('#coverImage').attribute('src').value
+    image = html_doc.search('#coverImage').attribute('src').nil? ? nil : html_doc.search('#coverImage').attribute('src').value
     isbn = html_doc.search('#description a:nth-child(1)').nil? ? html_doc.search('#description a:nth-child(1)').first.text : html_doc.search('.clearFloats:nth-child(2) .infoBoxRowItem').text.strip
+    puts "#{isbn}"
     clean_isbn = isbn.match?(/\(([^)]+)\)/) ? isbn.gsub(/\(([^)]+)\)/, "").strip : isbn
-    clean_isbn = nil if clean_isbn.to_i != 0
-
-    results = fetch_api_description(clean_isbn)
-    image == "" ? {image: image, description: results[:description], isbn: clean_isbn} : {image: results[:image], description: results[:description], isbn: clean_isbn}
+    puts "#{clean_isbn}"
+    clean_isbn = nil if clean_isbn.to_i == 0
+    puts "clean isbn: #{clean_isbn}"
+    if !clean_isbn.nil?
+      results = fetch_api_description(clean_isbn) if !clean_isbn.nil?
+      results.nil? ? nil : {image: results[:image], description: results[:description], isbn: clean_isbn}
+    else
+      nil
+    end
 end
 
 def scrape_countries
@@ -68,7 +80,9 @@ User.destroy_all
 Book.destroy_all
 
 puts "Scraping and creating Books"
-scrape_countries
+
+scrape_books("afghanistan")
+# scrape_countries
 # adding a description with the books without one
 books_without_description = Book.where(description: "")
 books_without_description.each do |book|
@@ -85,7 +99,7 @@ User.create(username: "rafiki", password: "password", email: "rafiki@book.com", 
 puts "Creating Profile"
 Profile.create(first_name: "Madeline", last_name: "Andrean", about: "I like books", user: User.first )
 Profile.create(first_name: "Gheorghe", last_name: "Tarcea", about: "I am always late", user: User.second)
-Profile.create(first_name: "Marion", last_name: "Bretonne", about: "About me", user: User.second)
+Profile.create(first_name: "Marion", last_name: "Bretonne", about: "About me", user: User.find(User.last.id - 2))
 
 puts "Creating Bookshelves"
 Bookshelf.create(name: "my_books", description: "This is your default bookshelf. Click on edit to make it fully yours", user: User.first)
