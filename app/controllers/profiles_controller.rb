@@ -13,6 +13,9 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @my_friendship = Friendship.where(asker_id: User.find(3).id).or(Friendship.where(receiver_id: User.find(3)))
+    @pending_friendships = @my_friendship.where(status: 'pending')
+    @friendships = @my_friendship.where(status: 'accepted')
   end
 
   def new

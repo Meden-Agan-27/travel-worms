@@ -3,7 +3,7 @@
     <% if current_user.id == params[:id].to_i %>
     <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
     <% else %>
-    <div class="text-center"><%= link_to 'Befriend', friendships_path(asker_id: current_user.id, receiver_id: @profile.user.id), method: :post, class: "btn btn-primary m-3" %></div>
+    <div class="text-center"><%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %></div>
     <% end %>
     <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
     <div class="row justify-content-center">
@@ -26,6 +26,14 @@
           <strong>About me: </strong>
           <%= @profile.about %><br>
         </p>
+        <% if current_user.id == params[:id].to_i %>
+          <% @pending_friendships.each do |p| %>
+          <p>
+            <%= p.receiver.username %>
+            <%= link_to 'Accept', friendship_accept_path(p), method: :post  %>
+          </p>
+        <% end %>
+        <% end %>
         <div class="text-center"><%= link_to 'Back to user search', profiles_path, class: "btn btn-primary mt-3" %></div>
       </div>
     </div>

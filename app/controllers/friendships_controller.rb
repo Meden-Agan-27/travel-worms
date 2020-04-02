@@ -8,20 +8,18 @@ class FriendshipsController < ApplicationController
 # step 6: if users are friends, bookshelves are visible
 # step 7: see notification when new friendship request comes in
 
-  def index
-    @friendships = Friendship.all
-  end
-
   def create
-    @asker_id = current_user.id
-    @receiver_id = params[:receiver_id].to_i
-    @friendship = Friendship.create(asker_id: @asker_id, receiver_id: @receiver_id)
+    @asker = current_user
+    @receiver = User.find(params[:receiver_id])
+    @friendship = Friendship.create(asker_id: @asker.id, receiver_id: @receiver.id)
   end
 
   def accept
+    raise
   end
 
   def decline
+
   end
 
 
