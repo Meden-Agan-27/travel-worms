@@ -1,4 +1,6 @@
-
+<% content_for :meta_title, "#{@bookshelf.name.capitalize} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @bookshelf.description %>
+<% content_for :meta_image, "../assets/images/books.png" %>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
