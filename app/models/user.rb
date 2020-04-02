@@ -18,4 +18,9 @@ class User < ApplicationRecord
   def create_profile
     profile = build_profile(first_name: "", last_name: "", about: "")
   end
+
+  def friends
+    @friends = Friendship.where()
+  end
+
 end
