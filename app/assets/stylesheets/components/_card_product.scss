@@ -2,16 +2,17 @@
   height: auto;
   background: white;
   // box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  display: flex;
   align-items: center;
   padding: 25px 15px;
   margin-top: 10px;
 
     h5{
       font-weight: 400;
-      text-align: justify;
       // color: $color;
     }
+}
+.card-product-flex {
+  display: flex;
 }
 
 .card-product-img {
@@ -23,16 +24,19 @@
 }
 
 .card-product p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
   .card-product-infos {
-  padding: 16px;
+    padding: 16px;
 }
 }
 
+  #big-justify {
+    text-align: justify;
+}
 .review {
   background-color: blac;
   height: auto;
@@ -40,4 +44,3 @@
   padding: 25px 15px;
   margin-top: 10px;
 }
-
