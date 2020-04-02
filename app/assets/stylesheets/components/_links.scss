@@ -1,18 +1,5 @@
-// .list-group-item:hover {
-//   color: $indigo;
-//   // opacity: 0.7;
-// }
-
-// .booklink {
-//   &:hover {
-//     color: $indigo;
-//   }
-// }
-
-
-// #shelf {
-//   &:hover {
-//     color: $indigo;
-//     opacity: 0.5;
-//   }
-// }
+a:hover {
+  text-decoration: none;
+  color: $indigo;
+  opacity: 0.7;
+}

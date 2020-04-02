@@ -1,16 +1,12 @@
 <div class="container">
 
-<% if  %>
-<h4 class="text-center">Search all books</h4>
+<% if @query %>
+<h4 class="text-center">Your results for "<%= @user_input %>"</h4>
+<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
 <% else %>
 <h4 class="text-center">Search all books</h4>
 <h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
 <% end %>
-
-
-
-<h4 class="text-center">Search all books</h4>
-<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
 <%= render 'shared/search_form' %>
 <br>
 

@@ -48,17 +48,20 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 0;
   // border-radius: 5px;
 }
 
 .card-title {
+  margin-top: 10px;
   color: white;
   top: 2px;
   color: #997515;
 }
 
 .card-text {
-margin-top: 5px;
+padding: 5px;
+margin-top: 10px;
   a {
   text-decoration: none;
   color: inherit;
@@ -69,7 +72,7 @@ margin-top: 5px;
   background-size: cover;
   background-position: center;
   height: 220px;
-  width: 200px;
+  width: 100%;
   justify-content: center;
   align-items: center;
   color: white;
