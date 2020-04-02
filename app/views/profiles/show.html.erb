@@ -27,40 +27,12 @@
                                 <strong>About me: </strong>
                                 <%= @profile.about %><br>
                             </p>
-                            <% if current_user.id == params[:id].to_i %>
-                            <% @pending_friendships.each do |p| %>
-                            <p>
-                                <% if p.receiver == current_user %>
-                                <%= p.asker.username %>
-                                <% else %>
-                                <%= p.receiver.username %>
-                                <% end %>
-                                <% if p.receiver == current_user %>
-                                <%= link_to 'Accept', friendship_accept_path(p), method: :post  %>
-                                <% else %>
-                                <span>- pending</span>
-                                <% end %>
-                                <% end %>
-                            </p>
-                            <% @friendships.each do |f| %>
-                            <p>
-                                <% if f.receiver == current_user %>
-                                <%= f.asker.username %>
-                                <% else %>
-                                <%= f.receiver.username %>
-                                <% end %>
-                            </p>
-                            <% end %>
-                            <% end %>
                         </div>
                     </div>
                 </div>
                 <% if current_user.id == params[:id].to_i %>
                 <div class="text-center">
                     <%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %>
-                </div>
-                <div class="text-center">
-                    <%= link_to 'Back to books', books_path, class: "btn btn-primary" %>
                 </div>
                 <% elsif @friend_check.empty? %>
                 <div class="text-center">
@@ -70,17 +42,52 @@
                 <div class="text-center">
                     <%= link_to 'Back to user search', profiles_path, class: "btn btn-primary m-3" %>
                 </div>
-                <div class="text-center">
-                    <%= link_to 'Back to books', books_path, class: "btn btn-primary" %>
-                </div>
                 <% end %>
+                <% if current_user.id == params[:id].to_i %>
+                <div class="profile-card">
+                    <% if !@pending_friendships.empty? %>
+                    <p><strong>Pending friendships </strong></p>
+                    <% @pending_friendships.each do |p| %>
+                    <p>
+                        <% if p.receiver == current_user %>
+                        <%= p.asker.username %>
+                        <% else %>
+                        <%= p.receiver.username %>
+                        <% end %>
+                        <% if p.receiver == current_user %>
+                        <%= link_to 'Accept', friendship_accept_path(p), method: :post  %>
+                        <%= link_to 'Decline', friendship_decline_path(p), method: :post  %>
+                        <% else %>
+                        <span>- pending</span>
+                        <% end %>
+                        <% end %>
+                        <% end %>
+                    </p>
+                    <p><strong>Your Friends </strong></p>
+                    <br>
+                    <% @friendships.each do |f| %>
+                    <p>
+                        <% if f.receiver == current_user %>
+                        <%= link_to f.asker.username, profile_path(f.asker.id) %>
+                        <% else %>
+                        <%= link_to f.receiver.username, profile_path(f.receiver.id) %>
+                        <% end %>
+                    </p>
+                    <% end %>
+                    <% end %>
+                <div class="text-center">
+                <%= link_to 'Find other users', profiles_path, class: "btn btn-primary m-3" %>
+                </div>
+                </div>
             </div>
         </div>
         <!--   </div> -->
     </div>
-    <% if !@friend_check.empty? %>
-    <h5>Your friend's bookshelves</h5>
+    <div class="container">
+    <% if !@friend_check.where(status: 'accepted').empty? %>
+    <h5 class="text-center mt-3">Your friend's bookshelves</h5>
     <% @bookshelves = Bookshelf.where(user_id: @profile.id) %>
+    <div class="row justify-content-center">
     <% @bookshelves.each do |bookshelf| %>
     <div class="col-md-4 flex-item p-20">
         <div class="card">
@@ -121,3 +128,5 @@
     <% end %>
 </div>
 <% end %>
+</div>
+</div>

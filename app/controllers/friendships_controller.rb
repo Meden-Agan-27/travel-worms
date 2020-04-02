@@ -19,11 +19,15 @@ before_action :find_friendship, only: [ :accept, :decline ]
   def accept
     @friendship.status = 'accepted'
     @friendship.save
+    flash[:notice] = "Friend request accepted!"
+    redirect_to profile_path(current_user)
   end
 
   def decline
     @friendship.status = 'declined'
     @friendship.save
+    flash[:notice] = "Friend request declined!"
+    redirect_to profile_path(current_user)
   end
 
 
