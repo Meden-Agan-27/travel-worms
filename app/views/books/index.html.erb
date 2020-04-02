@@ -21,7 +21,9 @@
 <% @books.each do |book| %>
 <div class="card-body-book">
 <div class="card-image-book" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= book.image %>);"></div>
-<div class="card-text-book text-center"><h6><%= link_to book.title, book, class: "stretched-link"  %></h6> <h6 style="font-family: Mukta Mahee"><strong><%= book.author  %></strong></h6></div>
+<div class="card-text-book">
+  <div class="text-center"><h6 id="index-title-troncated"><%= link_to book.title, book, class: "stretched-link" %></h6><h6 style="font-family: Mukta Mahee"><strong><%= book.author  %></strong></h6></div>
+  </div>
 </div>
 <% end %>
 <% end %>
