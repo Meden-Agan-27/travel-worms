@@ -3,6 +3,16 @@
 
 <%= render 'shared/search_form' %>
 <br>
+<% if params[:search].present? %>
+  <% if @books.count == 0 %>
+    <p>Sorry, we don't have book from this country. Please try another country.</p>
+  <% else %>
+
+    <p>We found <%= @books.count %> <%= @books.count == 1 ? "book" : "books" %> from <%= @books.first.country.capitalize %>.</p>
+  <% end %>
+  <br>
+<% end %>
+
 
 <button id="myBtn" title="Go to top">Up</button>
 <div class="cards">
