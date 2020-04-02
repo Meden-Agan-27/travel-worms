@@ -14,9 +14,9 @@
               </div>
           <% end %>
           <div class="text-sm-left text-md-left text-lg-justify">
-        <p><strong>Username:</strong><%= @profile.user.username %><br>
-         <strong>Email: </strong><%= @profile.user.email %><br>
-         <strong>Language: </strong><%= @profile.user.preferred_language %>
+        <p><%= @profile.user.username %><br>
+           <%= @profile.user.email %><br>
+           <%= @profile.user.preferred_language.capitalize %>
         </p>
         <p>
           <strong>About me:</strong>
@@ -25,8 +25,13 @@
       </div>
         </div>
       </div>
+        <% if @profile.user == current_user %>
         <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
         <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
+        <% else %>
+        <div class="text-center"><%= link_to 'Back to friends', profiles_path, class: "btn btn-primary m-3" %></div>
+        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -28,3 +28,30 @@ a {
 .navuser {
   color: $gold;
 }
+
+
+.dropdown-menu {
+  width: 24vw;
+  li {
+  font-size: 24px;
+  margin-bottom: 20px;
+  }
+}
+
+.dropdown-menu .nav-item {
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+// Small and medium device
+@media (min-width: 100px) and (max-width: 992px) {
+  .dropdown-menu {
+  width: 75vw;
+    li {
+    font-size: 26px;
+    margin-bottom: 20px;
+    }
+  }
+
+}
+

@@ -16,3 +16,39 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 }
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .banner {
+    padding: 240px 0;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .banner {
+    padding: 210px 0;
+  }
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .banner {
+    padding: 200px 0;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .banner {
+    padding: 200px 0;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .banner {
+    padding: 180px 0;
+  }
+}

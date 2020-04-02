@@ -1,5 +1,5 @@
 meta_product_name: "TravelWorms"
 meta_title: "TravelWorms - Read the world while discovering it."
 meta_description: "TravelWorms offers books from any country available in your preferred language."
-meta_image: "books.png" # should exist in `app/assets/images/`
+meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@TravelWorms"   # required for Twitter Cards
