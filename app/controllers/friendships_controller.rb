@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-
+before_action :find_friendship, only: [ :accept, :decline ]
 # step 1: Display all users through ProfileController (Went with no display unless search)
 # step 2: Show 1 user profile
 # step 3: Being able to send a friendship request
@@ -12,15 +12,24 @@ class FriendshipsController < ApplicationController
     @asker = current_user
     @receiver = User.find(params[:receiver_id])
     @friendship = Friendship.create(asker_id: @asker.id, receiver_id: @receiver.id)
+    flash[:notice] = "Friend request sent!"
+    redirect_to profile_path(@receiver.profile)
   end
 
   def accept
-    raise
+    @friendship.status = 'accepted'
+    @friendship.save
   end
 
   def decline
-
+    @friendship.status = 'declined'
+    @friendship.save
   end
 
+
+  private
+  def find_friendship
+    @friendship = Friendship.find(params[:friendship_id])
+  end
 
 end

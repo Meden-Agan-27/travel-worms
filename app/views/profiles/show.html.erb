@@ -2,8 +2,9 @@
   <div class="border-top">
     <% if current_user.id == params[:id].to_i %>
     <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
+    <% elsif @friend_check.empty? %>
+    <div class="text-center"><%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %> </div>
     <% else %>
-    <div class="text-center"><%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %></div>
     <% end %>
     <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
     <div class="row justify-content-center">
@@ -29,8 +30,25 @@
         <% if current_user.id == params[:id].to_i %>
           <% @pending_friendships.each do |p| %>
           <p>
+            <% if p.receiver == current_user %>
+            <%= p.asker.username %>
+            <% else %>
             <%= p.receiver.username %>
+            <% end %>
+            <% if p.receiver == current_user %>
             <%= link_to 'Accept', friendship_accept_path(p), method: :post  %>
+            <% else %>
+            <span>- pending</span>
+            <% end %>
+        <% end %>
+          </p>
+            <% @friendships.each do |f| %>
+          <p>
+            <% if f.receiver == current_user %>
+            <%= f.asker.username %>
+            <% else %>
+            <%= f.receiver.username %>
+            <% end %>
           </p>
         <% end %>
         <% end %>
@@ -39,4 +57,42 @@
     </div>
   </div>
 </div>
+<% @bookshelves = Bookshelf.where(user_id: @profile.id) %>
+<% @bookshelves.each do |bookshelf| %>
+        <div class="col-md-4 flex-item p-20">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1468487422149-5edc5034604f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" class="card-img-top" alt="...">
+            <div class="card-body">
+
+              <%= link_to bookshelf.name.capitalize, bookshelf, class: "link-title"%>
+              <!-- start counter books -->
+              <% if bookshelf.bookshelf_item_ids.length == 1 %>
+                <p class="card-text"><em><%= "1 book" %></em></p>
+              <% else %>
+                <p class="card-text"><em><%= "#{bookshelf.bookshelf_item_ids.length} books" %></em></p>
+                <%=  %>
+              <% end %>
+              <!-- end counter books -->
+              <!-- calculation for progress-bar -->
+              <% if bookshelf.bookshelf_item_ids.length > 0 %>
+              <% count = 0 %>
+              <% bookshelf.bookshelf_item_ids.each do |id| %>
+                <% item = BookshelfItem.find(id) %>
+                <% if item.status == 'completed' %>
+                <% count += 1 %>
+                <% end %>
+              <% end %>
+              <% calc = ((count.to_f / bookshelf.bookshelf_item_ids.length) * 100).to_f.floor(0) %>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <%= calc %>%; background-color: #28464B; opacity: 0.6" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= calc %>%</div>
+              </div>
+              <% end %>
+              <!-- end progress-bar -->
+              <p class="card-text"><%= bookshelf.description %></p>
+            </div>
+              <%= link_to '<i class="fas fa-trash icons"></i>'.html_safe, "bookshelves/#{bookshelf.id}", method: :delete, class: "trash-right" %>
+          </div>
+        </div>
+    <% end %>
+      </div>
 
