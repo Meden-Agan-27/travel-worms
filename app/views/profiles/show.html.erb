@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="border-top">
-    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
+<!--   <div class="border-top"> -->
+    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s Profile</h5>
 
     <div class="row justify-content-center">
       <div class="col-9">
@@ -14,7 +14,7 @@
               </div>
           <% end %>
           <div class="text-sm-left text-md-left text-lg-justify">
-        <p><strong>Username:</strong><%= @profile.user.username %><br>
+        <p><strong>Username: </strong><%= @profile.user.username %><br>
          <strong>Email: </strong><%= @profile.user.email %><br>
          <strong>Language: </strong><%= @profile.user.preferred_language %>
         </p>
@@ -29,6 +29,6 @@
         <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
       </div>
     </div>
-  </div>
+<!--   </div> -->
 </div>
 
