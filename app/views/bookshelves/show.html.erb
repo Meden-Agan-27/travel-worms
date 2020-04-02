@@ -12,23 +12,26 @@
       <p class="text-center"><%= @bookshelf.description %></p>
       <div class="text-center"><%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "btn btn-primary mb-3 mr-3" %></div>
 
-        <% @bookshelf_items.each do |item| %>
+    <% @bookshelf_items.each do |item| %>
         <% mybook = Book.find(item.book_id) %>
-        <div class="container">
-          <div class="card-body-bookshelf">
-            <div class="card-image-bookshelf" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= link_to (image_tag mybook.image), book_path(mybook.id) %>);"></div>
-              <div class="card-text-bookshelf text-center"><h6 style="font-family: Mukta Mahee"><%= link_to mybook.title, book_path(mybook.id) %></h6></div>
-                <p><%= simple_form_for [item.bookshelf, item], remote: true do |f| %></p>
-                <span class="list-group-item border-0"><%= f.select :status, { collection: ['to read', 'reading', 'completed'], selected: item.status }, {}, { onchange: 'this.form.submit();'} %></span>
-                <% end %>
-                <p class="text-center"><%= link_to '<i class="fas fa-trash icons"></i>'.html_safe, bookshelf_bookshelf_item_path(item.id), method: :delete %></p>
+    <div class="card-product">
+      <h6><%= link_to mybook.title, book_path(mybook.id) %></h6>
+        <div class="card-product-flex">
+          <div class="card-product-img" >
+            <%= link_to (image_tag mybook.image), book_path(mybook.id) %>
+          </div>
+          <div class="card-product-infos position-relative">
+            <p><%= simple_form_for [item.bookshelf, item], remote: true do |f| %></p>
+            <span class="list-group-item border-0"><%= f.select :status, { collection: ['to read', 'reading', 'completed'], selected: item.status }, {}, { onchange: 'this.form.submit();'} %></span>
+            <% end %>
+            <p class="text-center" id="trash"><%= link_to '<i class="fas fa-trash icons"></i>'.html_safe, bookshelf_bookshelf_item_path(item.id), method: :delete %></p>
           </div>
         </div>
-        <% end %>
+    </div>
+    <% end %>
+
 
     <div class="text-center"><%= link_to 'Back to bookshelves', bookshelves_path, class: "btn btn-primary mt-3" %></div>
     </div>
   </div>
 </div>
-
-
