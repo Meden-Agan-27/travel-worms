@@ -9,7 +9,7 @@
       <h2 class="text-center"><%= @bookshelf.name.capitalize %> (<%= @bookshelf_items.length %> <%= cucu %>)</h2>
         <button id="myBtn" title="Go to top">Up</button>
       <p class="text-center"><%= @bookshelf.description %></p>
-      <div class="text-right"><%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "btn btn-primary mb-3 mr-3" %></div>
+      <div class="text-center"><%= link_to "edit this bookshelf", edit_bookshelf_path(@bookshelf), class: "btn btn-primary mb-3 mr-3" %></div>
       <% @bookshelf_items.each do |item| %>
         <% mybook = Book.find(item.book_id) %>
     <ul class="container">
