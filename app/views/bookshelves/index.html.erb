@@ -31,7 +31,7 @@
                 <% end %>
               <% end %>
               <% calc = ((count.to_f / bookshelf.bookshelf_item_ids.length) * 100).to_f.floor(0) %>
-              <div class="progress">
+              <div class="progress" style="width: 100%">
                 <div class="progress-bar" role="progressbar" style="width: <%= calc %>%; background-color: #28464B; opacity: 0.6" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= calc %>%</div>
               </div>
               <% end %>
