@@ -42,7 +42,7 @@ def scrape_one_book(book_url)
     url = "https://www.goodreads.com#{book_url}"
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    image = html_doc.search('#coverImage').attribute('src').value
+    image = html_doc.search('#coverImage').attribute('src').nil? ? "" : html_doc.search('#coverImage').attribute('src').value
     isbn = html_doc.search('#description a:nth-child(1)').nil? ? html_doc.search('#description a:nth-child(1)').first.text : html_doc.search('.clearFloats:nth-child(2) .infoBoxRowItem').text.strip
       clean_isbn = isbn.match?(/\(([^)]+)\)/) ? isbn.gsub(/\(([^)]+)\)/, "").strip : isbn
       if clean_isbn.to_i != 0
@@ -103,11 +103,13 @@ BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.last).save!
 BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.first).save!
 BookshelfItem.new(bookshelf: Bookshelf.last, book: Book.second).save!
 puts "Creating reviews"
-Review.new(user: User.first, book: Book.first, review_content: "I didn't like this book coz I can't read.", rating: 1).save
-Review.new(user: User.second, book: Book.second, review_content: "I loved this book coz I can't read.", rating: 5).save
-Review.new(user: User.second, book: Book.last, review_content: "It was OK.", rating: 3).save
-Review.new(user: User.second, book: Book.first, review_content: "I hated this book coz I can read.", rating: 1).save
-Review.new(user: User.last, book: Book.last, review_content: "Well, you know", rating: 3).save
+books = Book.all
+books.each do |book|
+  Review.create(user: User.first, book: book, review_content: "This book was deceiving, I was expecting another kind of book...", rating: 1)
+  Review.create(user: User.second, book: book, review_content: "I loved this book! You must read it. Now! I'm serious!", rating: 5)
+  Review.create(user: User.find(3), book: book, review_content: "It was OK. You will learn a lot of things but it was a bit long. Chapter 6 is too boring, I haven't read it fully 😂", rating: 3)
+  Review.create(user: User.last, book: book, review_content: "My mother-in-law offered me this book. It was interesting, but not really my cup of tea.", rating: 3)
+end
 puts "Seeding done..."
 10.times { puts ">" }
 puts "... Congratulations!"
