@@ -1,23 +1,18 @@
 <div class="container">
 
-<% if @query %>
-<h4 class="text-center">Your results for "<%= @user_input %>"</h4>
-<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+<% if params[:search].present? %>
+  <% if @books.count == 0 %>
+    <h5 class="text-center">Sorry, we don't have book from this country. Please try another country.</h5>
+  <% else %>
+
+    <h5 class="text-center">We found <strong><%= @books.count %> <%= @books.count == 1 ? "book" : "books" %></strong> from <%= @books.first.country.capitalize %></h5>
+  <% end %>
 <% else %>
-<h4 class="text-center">Search all books</h4>
-<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+  <h5 class="text-center">Search all books</h5>
 <% end %>
 <%= render 'shared/search_form' %>
 <br>
-<% if params[:search].present? %>
-  <% if @books.count == 0 %>
-    <p>Sorry, we don't have book from this country. Please try another country.</p>
-  <% else %>
 
-    <p>We found <%= @books.count %> <%= @books.count == 1 ? "book" : "books" %> from <%= @books.first.country.capitalize %>.</p>
-  <% end %>
-  <br>
-<% end %>
 
 
 <button id="myBtn" title="Go to top">Up</button>

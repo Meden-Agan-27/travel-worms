@@ -12,7 +12,7 @@ class BooksController < ApplicationController
       @books = @books.where(language:current_user.preferred_language) if current_user
     else
       @query = false
-      if signed_in
+      if signed_in?
         @books = current_user.nil? ? @books = Book.all : Book.where(language: current_user.preferred_language)
       else
         @books = Book.all
