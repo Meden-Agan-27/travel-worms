@@ -1,11 +1,12 @@
 
 input#search_query{
   font-weight: bold;
-  color: $orange;
+  color: $indigo;
 }
 
 #search_query::placeholder {
   color: $gray;
   font-style: italic;
   font-weight: lighter;
+  opacity: 0.6;
 }

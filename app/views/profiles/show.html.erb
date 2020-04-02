@@ -1,12 +1,7 @@
 <div class="container">
   <div class="border-top">
-    <% if current_user.id == params[:id].to_i %>
-    <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
-    <% elsif @friend_check.empty? %>
-    <div class="text-center"><%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %> </div>
-    <% else %>
-    <% end %>
-    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
+
+    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s Profile</h5>
     <div class="row justify-content-center">
       <div class="col-9">
           <div class="card-profile">
@@ -19,9 +14,10 @@
               </div>
           <% end %>
           <div class="text-sm-left text-md-left text-lg-justify">
-        <p><strong>Username: </strong><%= @profile.user.username %><br>
-         <strong>Email: </strong><%= @profile.user.email %><br>
-         <strong>Language: </strong><%= @profile.user.preferred_language.capitalize %>
+        <p>
+          <strong>Username: </strong><%= @profile.user.username %><br>
+          <strong>Email: </strong><%= @profile.user.email %><br>
+          <strong>Language: </strong><%= @profile.user.preferred_language.capitalize %>
         </p>
         <p>
           <strong>About me: </strong>
@@ -52,11 +48,23 @@
           </p>
         <% end %>
         <% end %>
-        <div class="text-center"><%= link_to 'Back to user search', profiles_path, class: "btn btn-primary mt-3" %></div>
+      </div>
+        </div>
+      </div>
+        <% if current_user.id == params[:id].to_i %>
+        <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
+        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
+        <% elsif @friend_check.empty? %>
+        <div class="text-center"><%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %> </div>
+        <% else %>
+        <div class="text-center"><%= link_to 'Back to user search', profiles_path, class: "btn btn-primary m-3" %></div>
+        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
+        <% end %>
       </div>
     </div>
-  </div>
+<!--   </div> -->
 </div>
+
 <% @bookshelves = Bookshelf.where(user_id: @profile.id) %>
 <% @bookshelves.each do |bookshelf| %>
         <div class="col-md-4 flex-item p-20">
@@ -95,4 +103,3 @@
         </div>
     <% end %>
       </div>
-

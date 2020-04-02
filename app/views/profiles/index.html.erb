@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Profiles</h1>
 <% if @profile.nil? %>
 <p>Please search for a valid username</p>
@@ -20,17 +21,61 @@
             {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
             {:width=>140, :crop=>"scale"}
             ]) %>
+            </div>
   </div>
   <% end %>
   <div class="card-product-infos">
         <%= link_to "", @profile, class: "stretched-link" %>
         <p><strong>Username:</strong> <%=  @profile.user.username %></p>
-        <p>
-          <strong>About me:</strong>
-          <%= @profile.about %><br>
-          <strong>Language:</strong>
-          <%= @profile.user.preferred_language %>
-        </p>
   </div>
 </div>
+<% end %>
+
+<% if false %>
+This is a big comment line with the old master code
+<div class="container">
+<!--   <div class="border-top"> -->
+    <h4 class="text-center">My Friends</h4>
+    <div class="row justify-content-center">
+
+      <div class="col-12">
+          <% @profiles.each do |profile| %>
+          <% unless profile.user == current_user %> <!-- current_user is not showen in the list -->
+          <div class="notification">
+            <% if profile.photo.attached? %>
+                        <div class="text-center m-3"><%= cl_image_tag(profile.photo.key, :transformation=>[
+                          {:width=>100, :height=>100, :gravity=>"face", :radius=>"500", :crop=>"fill"},
+                          {:width=>50, :crop=>"scale"}
+                          ]) %>
+                        </div>
+                        <% else %>
+                        <%= cl_image_tag("uFQctjvkbeZAyAL8TySgyfPB", :transformation=>[
+                          {:width=>100, :height=>100, :gravity=>"face", :radius=>"500", :crop=>"fill"},
+                          {:width=>50, :crop=>"scale"}
+                          ])  %>
+                    <% end %>
+            <div class="notification-content">
+              <small>
+                <p>Username: <%= profile.user.username %></p>
+                <p>Email: <%= profile.user.email %></p>
+                <p>Language: <%= profile.user.preferred_language %></p>
+              </small>
+            </div>
+
+            <div class="notification-actions">
+              <ul class="list-group">
+              <li class="list-group-item border-0"><%= link_to '  ', profile, class: "fas fa-eye" %></li>
+              <% if profile.user == current_user %>
+                <li class="list-group-item border-0"><%= link_to '  ', edit_profile_path(profile), class: "fas fa-pencil-alt" %></li>
+                <li class="list-group-item border-0"><%= link_to '  ', profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %></li>
+              </ul>
+              <% end %>
+              <% end %> <!-- end current_user is not showen in the list -->
+            </div>
+          </div>
+          <% end %>
+          <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
+        </div>
+      </div>
+<!--     </div> -->
 <% end %>

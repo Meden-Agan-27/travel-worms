@@ -1,4 +1,4 @@
-.cards {
+.cards-book {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 24px;
@@ -7,70 +7,65 @@
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
-  .cards {
+  .cards-book {
     grid-template-columns: 1fr;
   }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  .cards {
+  .cards-book {
     grid-template-columns: 1fr;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .cards {
+  .cards-book {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .cards {
+  .cards-book {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .cards {
+  .cards-book {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
-.card-body {
-  width: 100%;
-  height: 250px;
+.card-body-book {
+  width: 240px;
+  height: 300px;
   background-color: white;
   justify-content: top;
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
+  padding: 0;
+  // border-radius: 5px;
 }
 
-.card-title {
-  color: white;
-  top: 2px;
-  color: #997515;
-}
-
-.card-text {
-  width: 100%;
-  margin-top: 10px;
+.card-text-book {
+padding: 5px;
+margin-top: 10px;
   a {
   text-decoration: none;
   color: inherit;
 }
 }
 
-.card-image {
+.card-image-book {
   background-size: cover;
   background-position: center;
   height: 220px;
-  width: 200px;
+  width: 100%;
   justify-content: center;
   align-items: center;
   color: white;
@@ -81,14 +76,9 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
 }
-// new cards
+// new cards-book
 .cstm-height-card .card-img-top {
   height: 100px;
   object-fit: cover;
 }
 
-.trash-right {
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
-}
