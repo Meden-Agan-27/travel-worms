@@ -16,8 +16,8 @@
     <ul class="container">
       <li class="list-group-item border-0" id="shelf"><%= link_to mybook.title, book_path(mybook.id) %>
         <!-- <small>status: <%= item.status %></small> -->
-        <div class="card-product">
-        <div class="card-product-img" >
+        <div class="card-shelf m-0">
+        <div class="card-shelf-img" >
         <%= link_to (image_tag mybook.image), book_path(mybook.id) %>
         </div>
           <ul>

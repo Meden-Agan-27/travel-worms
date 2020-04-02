@@ -20,9 +20,6 @@
             <li>
                 <%= link_to "My Bookshelves", bookshelves_path, class: "nav-item" %>
             </li>
-            <li>
-                <%= link_to "My Friends", "profiles", class: "nav-item" %>
-            </li>
             <% if current_user.profile %>
             <li>
                 <%= link_to "My Profile", profile_path(current_user.profile.id), class: "nav-item" %>
