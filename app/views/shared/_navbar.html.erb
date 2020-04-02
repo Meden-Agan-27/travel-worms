@@ -21,7 +21,7 @@
             </li>
             <% if current_user.profile %>
             <li>
-                <%= link_to "My profile", profile_path(current_user.profile.id), class: "nav-item" %>
+                <%= link_to "My Profile", profile_path(current_user.profile.id), class: "nav-item" %>
             </li>
             <% else %>
             <li>

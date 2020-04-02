@@ -1,6 +1,7 @@
 <div class="container">
   <div class="border-top">
-    <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
+    <h5 class="text-center mt-3"><%= @profile.user.username.capitalize %>'s profile</h5>
+
     <div class="row justify-content-center">
       <div class="col-9">
           <div class="card-profile">
@@ -24,7 +25,8 @@
       </div>
         </div>
       </div>
-        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary mt-3" %></div>
+        <div class="text-center"><%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %></div>
+        <div class="text-center"><%= link_to 'Back to books', books_path, class: "btn btn-primary" %></div>
       </div>
     </div>
   </div>
