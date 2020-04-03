@@ -1,12 +1,15 @@
 <button class="w-100" id="myBtn" title="Go to top">Back to top</button>
 <div class="container">
 
-<% if @query %>
-<h5 class="text-center">Your results for "<%= @user_input %>"</h5>
-<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+<% if params[:search].present? %>
+  <% if @books.count == 0 %>
+    <h5 class="text-center">Sorry, we don't have book from this country. Please try another country.</h5>
+  <% else %>
+
+    <h5 class="text-center">We found <strong><%= @books.count %> <%= @books.count == 1 ? "book" : "books" %></strong> from <%= @books.first.country.capitalize %></h5>
+  <% end %>
 <% else %>
-<h4 class="text-center">Search all books</h4>
-<h6 class="text-center" style="font-family: Mukta Mahee">(<%= @books.length %> books)</h6>
+  <h5 class="text-center">Search all books</h5>
 <% end %>
 <%= render 'shared/search_form' %>
 <br>
@@ -16,7 +19,9 @@
 <% @books.each do |book| %>
 <div class="card-body-book">
 <div class="card-image-book" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= book.image %>);"></div>
-<div class="card-text-book text-center"><h6><%= link_to book.title, book, class: "stretched-link"  %></h6> <h6 style="font-family: Mukta Mahee"><strong><%= book.author  %></strong></h6></div>
+<div class="card-text-book">
+  <div class="text-center"><h6 id="index-title-troncated"><%= link_to book.title, book, class: "stretched-link" %></h6><h6 style="font-family: Mukta Mahee"><strong><%= book.author  %></strong></h6></div>
+  </div>
 </div>
 <% end %>
 <% end %>
