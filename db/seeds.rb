@@ -42,6 +42,7 @@ end
 def scrape_one_book(book_url)
     url = "https://www.goodreads.com#{book_url}"
     html_file = open(url).read
+    begin
     html_doc = Nokogiri::HTML(html_file)
     image = html_doc.search('#coverImage').attribute('src').nil? ? nil : html_doc.search('#coverImage').attribute('src').value
     isbn = html_doc.search('#description a:nth-child(1)').nil? ? html_doc.search('#description a:nth-child(1)').first.text : html_doc.search('.clearFloats:nth-child(2) .infoBoxRowItem').text.strip
@@ -56,6 +57,9 @@ def scrape_one_book(book_url)
     else
       nil
     end
+    rescue URI::InvalidURIError
+    puts "Invalid book"
+  end
 end
 
 def scrape_countries
@@ -65,7 +69,7 @@ def scrape_countries
   html_doc = Nokogiri::HTML(html_file)
 
   #for production, please remove the "first(5)"!
-  html_doc.search('tr').each do |element|
+  html_doc.search('tr').first(10).each do |element|
     country = element.search('td:nth-child(2)').text.strip.downcase
       scrape_books(country)
       sleep(5)
