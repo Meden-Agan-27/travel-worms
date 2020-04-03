@@ -62,7 +62,7 @@
 
 .item-container {
 display: flex;
-// background-color: pink;
+background-color: white;
 background-size: cover;
 background-position: center;
 // height: 180px;
@@ -71,9 +71,9 @@ align-items: top;
 color: $indigo;
 font-size: 24px;
 font-weight: light;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+// text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 border-radius: 5px;
-box-shadow: 0 0 15px rgba(0,0,0,0.2);
+// box-shadow: 0 0 15px rgba(0,0,0,0.2);
 position: relative;
   // h5 {
   //   margin: 6px;
@@ -83,7 +83,7 @@ position: relative;
 
 .formdown {
   position: absolute;
-  right: 3px;
+  right: 6px;
   top: 146px;
   width: 150px;
 }
