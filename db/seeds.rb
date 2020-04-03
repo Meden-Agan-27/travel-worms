@@ -65,7 +65,7 @@ def scrape_countries
   html_doc = Nokogiri::HTML(html_file)
 
   #for production, please remove the "first(5)"!
-  html_doc.search('tr').first(2).each do |element|
+  html_doc.search('tr').each do |element|
     country = element.search('td:nth-child(2)').text.strip.downcase
       scrape_books(country)
       sleep(5)
@@ -80,9 +80,7 @@ User.destroy_all
 Book.destroy_all
 
 puts "Scraping and creating Books"
-
-scrape_books("afghanistan")
-# scrape_countries
+scrape_countries
 # adding a description with the books without one
 books_without_description = Book.where(description: "")
 books_without_description.each do |book|
