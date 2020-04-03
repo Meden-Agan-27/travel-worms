@@ -12,8 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_04_01_102715) do
 
-
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,8 +46,6 @@ ActiveRecord::Schema.define(version: 2020_04_01_102715) do
     t.string "author"
     t.string "country"
     t.string "original_title"
-    t.string "fra_title"
-    t.string "spa_title"
     t.text "description"
     t.string "isbn"
   end
