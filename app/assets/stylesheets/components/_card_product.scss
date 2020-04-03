@@ -56,13 +56,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
-  background-color: red;
+  // background-color: red;
   padding: 7px;
 }
 
 .item-container {
 display: flex;
-background-color: pink;
+// background-color: pink;
 background-size: cover;
 background-position: center;
 // height: 180px;
@@ -71,11 +71,27 @@ align-items: top;
 color: $indigo;
 font-size: 24px;
 font-weight: light;
-margin-left: 7px;
 text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 border-radius: 5px;
 box-shadow: 0 0 15px rgba(0,0,0,0.2);
+position: relative;
+  // h5 {
+  //   margin: 6px;
+  // }
 
+}
+
+.formdown {
+  position: absolute;
+  right: 3px;
+  top: 146px;
+  width: 150px;
+}
+
+.trash-shelf {
+  position: absolute;
+  right: 170px;
+  top: 155px;
 }
 
 // Smallest device
