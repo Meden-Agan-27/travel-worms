@@ -81,16 +81,16 @@ end
 
 puts "Cleaning DB"
 User.destroy_all
-Book.destroy_all
+# Book.destroy_all
 
 puts "Scraping and creating Books"
-scrape_countries
+#scrape_countries
 # adding a description with the books without one
-books_without_description = Book.where(description: "")
-books_without_description.each do |book|
-  book.description = "This book is essential to the understanding of this country. It is a masterpiece. There are many interesting things to discover in it. Go ahead, go ahead, go ahead!"
-  book.save
-end
+# books_without_description = Book.where(description: "")
+# books_without_description.each do |book|
+ # book.description = "This book is essential to the understanding of this country. It is a masterpiece. There are many interesting things to discover in it. Go ahead, go ahead, go ahead!"
+#  book.save
+#end
 puts "Creating Users"
 User.create(username: "maddy", password: "password", email: "maddy@book.com", preferred_language: "english")
 User.create(username: "ghita", password: "password", email: "ghita@book.com", preferred_language: "english")
