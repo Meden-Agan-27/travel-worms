@@ -54,7 +54,7 @@
 // cards for bookshelf items
 .card-items {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
   // background-color: red;
   padding: 7px;
@@ -118,7 +118,7 @@ position: relative;
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .card-items {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
