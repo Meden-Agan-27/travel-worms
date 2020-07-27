@@ -42,6 +42,7 @@ end
 def scrape_one_book(book_url)
     url = "https://www.goodreads.com#{book_url}"
     html_file = open(url).read
+    begin
     html_doc = Nokogiri::HTML(html_file)
     image = html_doc.search('#coverImage').attribute('src').nil? ? nil : html_doc.search('#coverImage').attribute('src').value
     isbn = html_doc.search('#description a:nth-child(1)').nil? ? html_doc.search('#description a:nth-child(1)').first.text : html_doc.search('.clearFloats:nth-child(2) .infoBoxRowItem').text.strip
@@ -56,6 +57,9 @@ def scrape_one_book(book_url)
     else
       nil
     end
+    rescue URI::InvalidURIError
+    puts "Invalid book"
+  end
 end
 
 def scrape_countries
@@ -65,7 +69,7 @@ def scrape_countries
   html_doc = Nokogiri::HTML(html_file)
 
   #for production, please remove the "first(5)"!
-  html_doc.search('tr').first(2).each do |element|
+  html_doc.search('tr').first(10).each do |element|
     country = element.search('td:nth-child(2)').text.strip.downcase
       scrape_books(country)
       sleep(5)
@@ -77,18 +81,16 @@ end
 
 puts "Cleaning DB"
 User.destroy_all
-Book.destroy_all
+# Book.destroy_all
 
 puts "Scraping and creating Books"
-
-scrape_books("afghanistan")
-# scrape_countries
+#scrape_countries
 # adding a description with the books without one
-books_without_description = Book.where(description: "")
-books_without_description.each do |book|
-  book.description = "This book is essential to the understanding of this country. It is a masterpiece. There are many interesting things to discover in it. Go ahead, go ahead, go ahead!"
-  book.save
-end
+# books_without_description = Book.where(description: "")
+# books_without_description.each do |book|
+ # book.description = "This book is essential to the understanding of this country. It is a masterpiece. There are many interesting things to discover in it. Go ahead, go ahead, go ahead!"
+#  book.save
+#end
 puts "Creating Users"
 User.create(username: "maddy", password: "password", email: "maddy@book.com", preferred_language: "english")
 User.create(username: "ghita", password: "password", email: "ghita@book.com", preferred_language: "english")
