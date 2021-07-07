@@ -1,4 +1,39 @@
 <div class="container">
+<h1>Profiles</h1>
+<% if @profile.nil? %>
+<p>Please search for a valid username</p>
+<% end %>
+<div>
+<%= form_tag profiles_path, method: :get do %>
+<%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a user"
+  %>
+<%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+</div>
+<% if @profile.nil? %>
+<% else %>
+<div class="card-product position-relative">
+  <% if @profile.photo.attached? %>
+  <div class="card-product-img"> <%= cl_image_tag(@profile.photo.key, :transformation=>[
+            {:width=>400, :height=>400, :gravity=>"face", :radius=>"0", :crop=>"crop"},
+            {:width=>140, :crop=>"scale"}
+            ]) %>
+            </div>
+  <div class="card-product-infos">
+        <%= link_to "", @profile, class: "stretched-link" %>
+        <p><strong>Username:</strong> <%=  @profile.user.username %></p>
+  </div>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<% if false %>
+This is a big comment line with the old master code
+<div class="container">
 <!--   <div class="border-top"> -->
     <h4 class="text-center">My Friends</h4>
     <div class="row justify-content-center">
@@ -43,12 +78,4 @@
         </div>
       </div>
 <!--     </div> -->
-  </div>
-
-
-
-
-
-
-
-
+<% end %>

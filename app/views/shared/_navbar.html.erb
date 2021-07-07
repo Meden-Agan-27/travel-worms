@@ -2,7 +2,9 @@
     <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "nounbook.png" %>
     <% end %>
+
     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="dropdown-menu dropdown-menu-right" id="navbarSupportedContent">
@@ -23,11 +25,15 @@
             <li>
                 <%= link_to "My Profile", profile_path(current_user.profile.id), class: "nav-item" %>
             </li>
+
             <% else %>
             <li>
                 <%= link_to "Create profile", "profiles/new", class: "nav-item" %>
             </li>
             <% end %>
+            <li>
+              <%= link_to 'Find Users', profiles_path, class: "nav-item"  %>
+            </li>
             <li>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item" %>
             </li>

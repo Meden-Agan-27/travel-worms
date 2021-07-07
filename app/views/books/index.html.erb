@@ -1,3 +1,4 @@
+<button class="w-100" id="myBtn" title="Go to top">Back to top</button>
 <div class="container">
 
 <% if params[:search].present? %>
@@ -13,9 +14,6 @@
 <%= render 'shared/search_form' %>
 <br>
 
-
-
-<button id="myBtn" title="Go to top">Up</button>
 <div class="cards-book">
   <% if @books %>
 <% @books.each do |book| %>

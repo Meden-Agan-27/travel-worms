@@ -1,11 +1,22 @@
 class ProfilesController < ApplicationController
 
   def index
-    @profiles = Profile.all
+    if params[:query].present?
+      @user = User.where(username: params[:query])
+      if @user.empty?
+        @profile = nil
+      else
+        @profile = @user[0].profile
+      end
+    end
   end
 
   def show
     @profile = Profile.find(params[:id])
+    @my_friendship = Friendship.where(asker_id: current_user.id).or(Friendship.where(receiver_id: current_user.id))
+    @pending_friendships = @my_friendship.where(status: 'pending')
+    @friendships = @my_friendship.where(status: 'accepted')
+    @friend_check = Friendship.where(asker_id: @profile.user.id, receiver_id: current_user.id).or(Friendship.where(receiver_id: @profile.user.id, asker_id: current_user.id ))
   end
 
   def new
