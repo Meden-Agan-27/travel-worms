@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.5'
+ruby '3.2.0'
 
 gem 'bootsnap', require: false
 gem 'devise'
@@ -7,7 +7,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'pg_search','~> 2.3.0'
 gem 'puma'
-gem 'rails', '5.2.4.1'
+gem 'rails', '~> 7.0.x'
 gem 'redis'
 
 gem 'autoprefixer-rails'
